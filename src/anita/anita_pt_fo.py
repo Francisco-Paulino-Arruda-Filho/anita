@@ -1,5 +1,9 @@
 import traceback
 from rply import LexerGenerator
+import json
+from rply import ParserGenerator
+from rply import Token
+import sys
 
 ## File formula.py
 class BinaryFormula():
@@ -266,8 +270,10 @@ class PredicateFormula():
     def substitution(self, var_x, a):
       aux_variables = []
       for v in self.variables:
-        if(v==var_x): aux_variables.append(a)
-        else: aux_variables.append(v)
+        if(v==var_x): 
+          aux_variables.append(a)
+        else: 
+          aux_variables.append(v)
       return PredicateFormula(self.name, aux_variables)
 
     def is_first_order_formula(self):
@@ -347,7 +353,7 @@ class QuantifierFormula():
     def is_substitutable(self, x, y):
       if (self.variable == y and x in self.formula.free_variables()):
         return False
-      return self.formula.is_substitutable(x,y)# and (self.variable == y or x in self.formula.free_variables())
+      return self.formula.is_substitutable(x,y) 
 
     def valid_substitution(self, formula):
       free_vars = formula.free_variables()
@@ -361,15 +367,13 @@ class QuantifierFormula():
 
     def substitution(self, var_x, a):
       if self.variable == var_x:
-        return self#.formula#.clone()
+        return self
       else:
         return QuantifierFormula(self.forAll,self.variable, self.formula.substitution(var_x, a))
 
     def get_values_x_substitution(self, var_x, formula):
       if not (isinstance(formula,QuantifierFormula) and self.forAll==formula.forAll):
         return set()
-      #elif self.variable != var_x:
-      #  return set()
       else:
         return self.formula.get_values_x_substitution(var_x, formula.formula)
     def is_first_order_formula(self):
@@ -609,7 +613,7 @@ class SymbolTable:
     def lookup_formula_by_line(self, rule_line, line):
     # Returns only if the line is visible
         branch = self.find_branch(rule_line)
-        while branch != None:
+        while branch is not None:
             for rule in self.symbol_table[branch]['rules']:
                 if rule.line == line:
                     return rule.formula
@@ -619,7 +623,7 @@ class SymbolTable:
     def lookup_true_value_by_line(self, rule_line, line):
     # Returns only if the line is visible
         branch = self.find_branch(rule_line)
-        while branch != None:
+        while branch is not None:
             for rule in self.symbol_table[branch]['rules']:
                 if rule.line == line:
                   if (isinstance(rule,ClosedRule)):
@@ -646,16 +650,11 @@ class SymbolTable:
     def get_box_end(self):
         if self.current_branch != 'branch_0':
             return self.symbol_table[self.current_branch]['end_line']
-        return None        
-
-    def get_box_end(self, line):
-        branch = self.find_branch(line)
-        if branch != 'branch_0':
-            return self.symbol_table[branch]['end_line']
-        return None        
+        return None               
 
     def get_last_rule_from_branch(self):
-        if self.symbol_table[self.current_branch]['rules']==[]: return None
+        if self.symbol_table[self.current_branch]['rules']==[]: 
+          return None
         return self.symbol_table[self.current_branch]['rules'][-1]
 
     def get_rule(self, rule_line):
@@ -667,16 +666,18 @@ class SymbolTable:
 
     def check_is_visible(self, formula1_line, formula2_line):
       #Find formula1_line branch.
-      if (int(formula1_line) <= int(formula2_line)): return False
+      if (int(formula1_line) <= int(formula2_line)): 
+        return False
       current_branch = None
       for i in range(len(self.symbol_table)):
         for rule in self.symbol_table['branch_{}'.format(i)]['rules']:
           if rule and (rule.line == formula1_line):
             current_branch = self.symbol_table['branch_{}'.format(i)]
             break
-        if current_branch != None: break
+        if current_branch is not None: 
+          break
       #Check if formula2_line in formula1_line branch 
-      while current_branch != None:
+      while current_branch is not None:
         for rule in current_branch['rules']:
           if rule and (rule.line == formula2_line):
             return True
@@ -686,13 +687,13 @@ class SymbolTable:
 
     # Returns True if the variable of the line is a fresh variable, i.e., it did not occur before this branch. 
     def is_fresh_variable(self, line, variable):
-      return not variable in self.get_free_variables_before_branch(line)
+      return variable not in self.get_free_variables_before_branch(line)
 
     def get_free_variables_before_branch(self, line):
       free_variables = set()
       #Find formula1_line branch.
       branch = self.find_branch(line)
-      while branch != None:
+      while branch is not None:
           for rule in self.symbol_table[branch]['rules']:
             if (int(rule.line) < int(line)):
               free_variables = free_variables.union(rule.formula.free_variables())
@@ -705,7 +706,7 @@ class SymbolTable:
     def get_branch_rules(self, line):
       rules = []
       current_branch = self.find_branch(line)
-      while current_branch != None:
+      while current_branch is not None:
         aux_rules = []
         for rule in self.symbol_table[current_branch]['rules']:
           if rule and (int(rule.line) <= int(line)):
@@ -773,9 +774,9 @@ class SymbolTable:
       for c in closed_rules:
         r1 = self.get_rule(c.reference1)
         r2 = self.get_rule(c.reference2)
-        if not r1 in reference_rules:
+        if r1 not in reference_rules:
           reference_rules.append(r1)
-        if not r2 in reference_rules:
+        if r2 not in reference_rules:
           reference_rules.append(r2)
       return reference_rules
 
@@ -799,19 +800,6 @@ class SymbolTable:
         else:
           nonsaturated_branches.append(rules)
       return saturated_branches, nonsaturated_branches
-
-    # Código Proposicional
-    # def get_open_saturated_branches(self):
-    #   saturated_branches = []
-    #   nonsaturated_branches = []
-    #   branchs = self.get_open_tableau_branches()
-    #   for branch in branchs:
-    #     rules = self.get_branch_rules(branch['rules'][-1].line)
-    #     if self.branch_is_saturaded(rules) and not self.branch_has_contradiction(rules):
-    #       saturated_branches.append(rules)
-    #     else:
-    #       nonsaturated_branches.append(rules)
-    #   return saturated_branches, nonsaturated_branches
 
     def truth_values_toString(self,v):
       v.keys()
@@ -904,13 +892,15 @@ class SymbolTable:
 
     def is_closed_branchs(self):
       for key, branch in self.symbol_table.items():
-        if (key=='branch_0'): continue
-        if(branch['end_line']==None): return False
+        if (key=='branch_0'): 
+          continue
+        if(branch['end_line'] is None): 
+          return False
       return True
 
     def find_branch_variable(self, line):
         branch = self.find_branch(line)
-        if branch != None:
+        if branch is not None:
           return self.symbol_table[branch]['variable']
         #Verifica se a linha não tem fórmula (introdução do universal)
         for key, branch in self.symbol_table.items():
@@ -920,7 +910,7 @@ class SymbolTable:
 
     def check_branch_is_valid(self, branch):
         current_branch = self.current_branch
-        while current_branch != None:
+        while current_branch is not None:
             if current_branch == branch:
                 return True
             current_branch = self.symbol_table[current_branch]['parent']
@@ -928,7 +918,6 @@ class SymbolTable:
 
 
 ## dados_json.py
-import json
 
 class tableau_deduction_return:
     def __init__(self):
@@ -1083,7 +1072,7 @@ class AndTrueRule(BasicRule):
 
       formula1 = parser.symbol_table.lookup_formula_by_line(self.line, self.reference1)
       true_value = parser.symbol_table.lookup_true_value_by_line(self.line, self.reference1)
-      if(formula1==None):
+      if(formula1 is None):
         return
       # If the formula (reference 1) is not a conjunction formula
       if(not isinstance(formula1, BinaryFormula) or (isinstance(formula1, BinaryFormula) and not formula1.is_conjunction()) 
@@ -1106,7 +1095,7 @@ class AndFalseRule(BasicRule):
 
       formula1 = parser.symbol_table.lookup_formula_by_line(self.line, self.reference1)
       true_value = parser.symbol_table.lookup_true_value_by_line(self.line, self.reference1)
-      if(formula1==None):
+      if(formula1 is None):
         return
       # If the formula (reference 1) is not a conjunction formula
       if(not isinstance(formula1, BinaryFormula) or (isinstance(formula1, BinaryFormula) and not formula1.is_conjunction()) 
@@ -1129,7 +1118,7 @@ class OrTrueRule(BasicRule):
 
       formula1 = parser.symbol_table.lookup_formula_by_line(self.line, self.reference1)
       true_value = parser.symbol_table.lookup_true_value_by_line(self.line, self.reference1)
-      if(formula1==None):
+      if(formula1 is None):
         return
       # If the formula (reference 1) is not a conjunction formula
       if(not isinstance(formula1, BinaryFormula) or (isinstance(formula1, BinaryFormula) and not formula1.is_disjunction())
@@ -1152,7 +1141,7 @@ class OrFalseRule(BasicRule):
 
       formula1 = parser.symbol_table.lookup_formula_by_line(self.line, self.reference1)
       true_value = parser.symbol_table.lookup_true_value_by_line(self.line, self.reference1)
-      if(formula1==None):
+      if(formula1 is None):
         return
       # If the formula (reference 1) is not a disjunction formula
       if(not isinstance(formula1, BinaryFormula) or (isinstance(formula1, BinaryFormula) and not formula1.is_disjunction())
@@ -1175,7 +1164,7 @@ class ImpTrueRule(BasicRule):
 
       formula1 = parser.symbol_table.lookup_formula_by_line(self.line, self.reference1)
       true_value = parser.symbol_table.lookup_true_value_by_line(self.line, self.reference1)
-      if(formula1==None):
+      if(formula1 is None):
         return
       # If the formula (reference 1) is not a conjunction formula
       if(not isinstance(formula1, BinaryFormula) or (isinstance(formula1, BinaryFormula) and not formula1.is_implication())):
@@ -1204,8 +1193,7 @@ class ImpFalseRule(BasicRule):
         parser.check_line_branch_reference_error(deduction_result,self, reference1=True)      
 
       formula1 = parser.symbol_table.lookup_formula_by_line(self.line, self.reference1)
-      true_value = parser.symbol_table.lookup_true_value_by_line(self.line, self.reference1)
-      if(formula1==None):
+      if(formula1 is None):
         return
       # If the formula (reference 1) is not a conjunction formula
       if(not isinstance(formula1, BinaryFormula) or (isinstance(formula1, BinaryFormula) and not formula1.is_implication())):
@@ -1232,7 +1220,7 @@ class NegationRule(BasicRule):
 
       formula1= parser.symbol_table.lookup_formula_by_line(self.line, self.reference1)
       true_value = parser.symbol_table.lookup_true_value_by_line(self.line, self.reference1)
-      if(formula1==None):
+      if(formula1 is None):
         return
 
       # If the formula is not a negation formula or the true value is not different
@@ -1271,7 +1259,7 @@ class ClosedRule():
       formula2 = parser.symbol_table.lookup_formula_by_line(self.line, self.reference2)
       true_value2 = parser.symbol_table.lookup_true_value_by_line(self.line, self.reference2)
 
-      if(formula1==None or formula2==None or self.formula==None):
+      if(formula1 is None or formula2 is None or self.formula is None):
         return
 
       # If the formula (reference 1) is not a contradiction
@@ -1303,10 +1291,9 @@ class ForAllTrueRule(BasicRule):
       if before:
         parser.check_line_branch_reference_error(deduction_result,self, reference1=True)      
 
-      formula_reference = parser.symbol_table.find_token(self.line)
       formula1 = parser.symbol_table.lookup_formula_by_line(self.line, self.reference1)
       true_value = parser.symbol_table.lookup_true_value_by_line(self.line, self.reference1)
-      if(formula1==None):
+      if(formula1 is None):
         return
 
       # If the formula is not a existential formula
@@ -1327,10 +1314,9 @@ class ExistsFalseRule(BasicRule):
       if before:
         parser.check_line_branch_reference_error(deduction_result,self, reference1=True)      
 
-      formula_reference = parser.symbol_table.find_token(self.line)
       formula1 = parser.symbol_table.lookup_formula_by_line(self.line, self.reference1)
       true_value = parser.symbol_table.lookup_true_value_by_line(self.line, self.reference1)
-      if(formula1==None):
+      if(formula1 is None):
         return
 
       # If the formula is not a existential formula
@@ -1351,11 +1337,10 @@ class ForAllFalseRule(BasicRule):
       if before:
         parser.check_line_branch_reference_error(deduction_result,self, reference1=True)      
 
-      formula_reference = parser.symbol_table.find_token(self.line)
       formula1 = parser.symbol_table.lookup_formula_by_line(self.line, self.reference1)
       true_value = parser.symbol_table.lookup_true_value_by_line(self.line, self.reference1)
 
-      if(formula1==None):
+      if(formula1 is None):
         return
 
       # If the formula is not an universal formula
@@ -1383,11 +1368,10 @@ class ExistsTrueRule(BasicRule):
       if before:
         parser.check_line_branch_reference_error(deduction_result,self, reference1=True)      
 
-      formula_reference = parser.symbol_table.find_token(self.line)
       formula1 = parser.symbol_table.lookup_formula_by_line(self.line, self.reference1)
       true_value = parser.symbol_table.lookup_true_value_by_line(self.line, self.reference1)
 
-      if(formula1==None):
+      if(formula1 is None):
         return
 
       # If the formula is not an universal formula
@@ -1408,12 +1392,6 @@ class ExistsTrueRule(BasicRule):
 
 
 ## File analisys.py
-
-from rply import ParserGenerator
-from rply import Token
-import sys
-import re
-import copy
 
 deduction_result = tableau_deduction_return()
 
@@ -1454,8 +1432,10 @@ class ParserAnita():
           if x.isdigit():
             if int(x)!=i: 
               self.has_error = True
-              if(i==1): deduction_result.add_error('{}\n^, A numeração da linha {} deveria ser {}, pois a numeração da prova deve ser sequencial e iniciar em 1.\n'.format(p,x,i))
-              else: deduction_result.add_error('{}\n^, A numeração da linha {} deveria ser {}, pois a numeração da prova deve ser sequencial.\n'.format(p,x,i))
+              if(i==1): 
+                deduction_result.add_error('{}\n^, A numeração da linha {} deveria ser {}, pois a numeração da prova deve ser sequencial e iniciar em 1.\n'.format(p,x,i))
+              else: 
+                deduction_result.add_error('{}\n^, A numeração da linha {} deveria ser {}, pois a numeração da prova deve ser sequencial.\n'.format(p,x,i))
               break
             i+=1
 
@@ -1463,8 +1443,9 @@ class ParserAnita():
       if(not self.symbol_table.is_closed_branchs()):
         self.has_error = True
         for key, branch in self.symbol_table.symbol_table.items():
-          if (key=='branch_0'): continue
-          if(branch['end_line']==None): 
+          if (key=='branch_0'): 
+            continue
+          if(branch['end_line'] is None): 
             begin_rule = branch["rules"][0]
             begin_token = branch["rules"][0].token_formula
             deduction_result.add_error(self.get_error(constants.BOX_MUST_BE_DISPOSED, begin_token, begin_rule))
@@ -1493,12 +1474,12 @@ class ParserAnita():
     def check_line_branch_reference_error(self, deduction_result, rule, reference1=False, reference2=False):
       result = True
       if reference1:
-        if (self.symbol_table.lookup_formula_by_line(rule.line, rule.reference1)==None):
+        if (self.symbol_table.lookup_formula_by_line(rule.line, rule.reference1) is None):
             self.has_error = True
             deduction_result.add_error(self.get_error(constants.USING_DESCARTED_RULE, rule.token_reference1, rule))
             result = False
       if reference2:
-        if (self.symbol_table.lookup_formula_by_line(rule.line, rule.reference2)==None):
+        if (self.symbol_table.lookup_formula_by_line(rule.line, rule.reference2) is None):
             self.has_error = True
             deduction_result.add_error(self.get_error(constants.USING_DESCARTED_RULE, rule.token_reference2, rule))
             result = False
@@ -1516,8 +1497,6 @@ class ParserAnita():
             rule_info = p[0]
             for i in rule_info:
                 rule_line, formula_reference = rule_info[i]
-
-                formula_reference = self.symbol_table.find_token(rule_line.value)
 
                 rule = self.symbol_table.get_rule(rule_line.value)
                 if(isinstance(rule, PremisseRule) ):
@@ -1537,18 +1516,18 @@ class ParserAnita():
 
                     #Verifica se ambas as fórmulas da conjunção estão definidas
                     formula1 = self.symbol_table.lookup_formula_by_line(rule.line,rule.reference1)
-                    if formula1==None or not isinstance(formula1, BinaryFormula):
+                    if formula1 is None or not isinstance(formula1, BinaryFormula):
                       continue
                     rule_AndTrue = self.symbol_table.get_rule(rule.reference1)
                     rule_previous = self.symbol_table.get_rule(str(int(rule.line)-1))
                     rule_next = self.symbol_table.get_rule(str(int(rule.line)+1))
                     if(formula1.left==rule.formula):    
-                      if not ( rule_previous!=None and isinstance(rule_previous, AndTrueRule) and formula1.left==rule_previous.formula):                  
-                        if( rule_next==None or (not isinstance(rule_next, AndTrueRule)) or formula1.right!=rule_next.formula):
+                      if not ( rule_previous is not None and isinstance(rule_previous, AndTrueRule) and formula1.left==rule_previous.formula):                  
+                        if( rule_next is None or (not isinstance(rule_next, AndTrueRule)) or formula1.right!=rule_next.formula):
                           self.has_error = True
                           deduction_result.add_error(self.get_error(constants.INVALID_TRUE_CONJUNCTION_NEXT, rule.token_line, rule_AndTrue))
                     elif(formula1.right==rule.formula):                      
-                      if( rule_previous==None or (not isinstance(rule_previous, AndTrueRule)) or formula1.left!=rule_previous.formula):
+                      if( rule_previous is None or (not isinstance(rule_previous, AndTrueRule)) or formula1.left!=rule_previous.formula):
                         self.has_error = True
                         deduction_result.add_error(self.get_error(constants.INVALID_TRUE_CONJUNCTION_PREVIOUS, rule.token_line, rule_AndTrue))
 
@@ -1568,17 +1547,17 @@ class ParserAnita():
                         deduction_result.add_error(self.get_error(constants.INVALID_BETA_RULE, rule.token_line, rule))
                     else:
                       formula1 = self.symbol_table.lookup_formula_by_line(rule.line,rule.reference1)
-                      if formula1==None or not isinstance(formula1, BinaryFormula):
+                      if formula1 is None or not isinstance(formula1, BinaryFormula):
                         continue
                       rule_AndFalse = self.symbol_table.get_rule(rule.reference1)
                       if(formula1.left==rule.formula):                      
                         rule_next = branchs[1]['rules'][0]
-                        if( rule_next==None or (not isinstance(rule_next, AndFalseRule)) or formula1.right!=rule_next.formula):
+                        if( rule_next is None or (not isinstance(rule_next, AndFalseRule)) or formula1.right!=rule_next.formula):
                           self.has_error = True
                           deduction_result.add_error(self.get_error(constants.INVALID_FALSE_CONJUNCTION_NEXT, rule.token_line, rule_AndFalse))
                       elif(formula1.right==rule.formula):                      
                         rule_previous = branchs[0]['rules'][0]
-                        if( rule_previous==None or (not isinstance(rule_previous, AndFalseRule)) or formula1.left!=rule_previous.formula):
+                        if( rule_previous is None or (not isinstance(rule_previous, AndFalseRule)) or formula1.left!=rule_previous.formula):
                           self.has_error = True
                           deduction_result.add_error(self.get_error(constants.INVALID_FALSE_CONJUNCTION_PREVIOUS, rule.token_line, rule_AndFalse))
                     #Verifica se a regra já foi utilizada anteriormente
@@ -1590,18 +1569,18 @@ class ParserAnita():
                     rule.evaluation(self, deduction_result)
                     #Verifica se ambas as fórmulas da disjunção estão definidas
                     formula1 = self.symbol_table.lookup_formula_by_line(rule.line,rule.reference1)
-                    if formula1==None or not isinstance(formula1, BinaryFormula):
+                    if formula1 is None or not isinstance(formula1, BinaryFormula):
                       continue
                     rule_OrFalse = self.symbol_table.get_rule(rule.reference1)
                     rule_previous = self.symbol_table.get_rule(str(int(rule.line)-1))
                     rule_next = self.symbol_table.get_rule(str(int(rule.line)+1))
                     if(formula1.left==rule.formula):    
-                      if not (rule_previous!=None and isinstance(rule_previous, OrFalseRule) and formula1.left==rule_previous.formula):
-                        if( rule_next==None or (not isinstance(rule_next, OrFalseRule)) or formula1.right!=rule_next.formula):
+                      if not (rule_previous is not None and isinstance(rule_previous, OrFalseRule) and formula1.left==rule_previous.formula):
+                        if( rule_next is None or (not isinstance(rule_next, OrFalseRule)) or formula1.right!=rule_next.formula):
                           self.has_error = True
                           deduction_result.add_error(self.get_error(constants.INVALID_FALSE_DISJUNCTION_NEXT, rule.token_line, rule_OrFalse))
                     elif(formula1.right==rule.formula):                      
-                      if( rule_previous==None or (not isinstance(rule_previous, OrFalseRule)) or formula1.left!=rule_previous.formula):
+                      if( rule_previous is None or (not isinstance(rule_previous, OrFalseRule)) or formula1.left!=rule_previous.formula):
                         self.has_error = True
                         deduction_result.add_error(self.get_error(constants.INVALID_FALSE_DISJUNCTION_PREVIOUS, rule.token_line, rule_OrFalse))
                     #Verifica se a regra já foi utilizada anteriormente
@@ -1621,17 +1600,17 @@ class ParserAnita():
                         deduction_result.add_error(self.get_error(constants.INVALID_BETA_RULE, rule.token_line, rule))
                     else:
                       formula1 = self.symbol_table.lookup_formula_by_line(rule.line,rule.reference1)
-                      if formula1==None or not isinstance(formula1, BinaryFormula):
+                      if formula1 is None or not isinstance(formula1, BinaryFormula):
                         continue
                       rule_OrTrue = self.symbol_table.get_rule(rule.reference1)
                       if(formula1.left==rule.formula):                      
                         rule_next = branchs[1]['rules'][0]
-                        if( rule_next==None or (not isinstance(rule_next, OrTrueRule)) or formula1.right!=rule_next.formula):
+                        if( rule_next is None or (not isinstance(rule_next, OrTrueRule)) or formula1.right!=rule_next.formula):
                           self.has_error = True
                           deduction_result.add_error(self.get_error(constants.INVALID_TRUE_DISJUNCTION_NEXT, rule.token_line, rule_OrTrue))
                       elif(formula1.right==rule.formula):                      
                         rule_previous = branchs[0]['rules'][0]
-                        if( rule_previous==None or (not isinstance(rule_previous, OrTrueRule)) or formula1.left!=rule_previous.formula):
+                        if( rule_previous is None or (not isinstance(rule_previous, OrTrueRule)) or formula1.left!=rule_previous.formula):
                           self.has_error = True
                           deduction_result.add_error(self.get_error(constants.INVALID_TRUE_DISJUNCTION_PREVIOUS, rule.token_line, rule_OrTrue))
                     #Verifica se a regra já foi utilizada anteriormente
@@ -1651,17 +1630,17 @@ class ParserAnita():
                         deduction_result.add_error(self.get_error(constants.INVALID_BETA_RULE, rule.token_line, rule))
                     else:
                       formula1 = self.symbol_table.lookup_formula_by_line(rule.line,rule.reference1)
-                      if formula1==None or not isinstance(formula1, BinaryFormula):
+                      if formula1 is None or not isinstance(formula1, BinaryFormula):
                         continue
                       rule_ImpTrue = self.symbol_table.get_rule(rule.reference1)
                       if(formula1.left==rule.formula):                      
                         rule_next = branchs[1]['rules'][0]
-                        if( rule_next==None or (not isinstance(rule_next, ImpTrueRule)) or formula1.right!=rule_next.formula):
+                        if( rule_next is None or (not isinstance(rule_next, ImpTrueRule)) or formula1.right!=rule_next.formula):
                           self.has_error = True
                           deduction_result.add_error(self.get_error(constants.INVALID_TRUE_IMPLICATION_NEXT, rule.token_line, rule_ImpTrue))
                       elif(formula1.right==rule.formula):                      
                         rule_previous = branchs[0]['rules'][0]
-                        if( rule_previous==None or (not isinstance(rule_previous, ImpTrueRule)) or formula1.left!=rule_previous.formula):
+                        if( rule_previous is None or (not isinstance(rule_previous, ImpTrueRule)) or formula1.left!=rule_previous.formula):
                           self.has_error = True
                           deduction_result.add_error(self.get_error(constants.INVALID_TRUE_IMPLICATION_PREVIOUS, rule.token_line, rule_ImpTrue))
                      #Verifica se a regra já foi utilizada anteriormente
@@ -1673,17 +1652,17 @@ class ParserAnita():
                     rule.evaluation(self, deduction_result)
                     #Verifica se ambas as fórmulas da implicação estão definidas
                     formula1 = self.symbol_table.lookup_formula_by_line(rule.line,rule.reference1)
-                    if formula1==None or not isinstance(formula1, BinaryFormula):
+                    if formula1 is None or not isinstance(formula1, BinaryFormula):
                       continue
                     rule_ImpFalse = self.symbol_table.get_rule(rule.reference1)
                     if(formula1.left==rule.formula and rule.token_true_value.gettokentype()=='TRUE'):                      
                       rule_next = self.symbol_table.get_rule(str(int(rule.line)+1))
-                      if( rule_next==None or (not isinstance(rule_next, ImpFalseRule)) or formula1.right!=rule_next.formula):
+                      if( rule_next is None or (not isinstance(rule_next, ImpFalseRule)) or formula1.right!=rule_next.formula):
                         self.has_error = True
                         deduction_result.add_error(self.get_error(constants.INVALID_FALSE_IMPLICATION_NEXT, rule.token_line, rule_ImpFalse))
                     elif(formula1.right==rule.formula and rule.token_true_value.gettokentype()=='FALSE'):                      
                       rule_previous = self.symbol_table.get_rule(str(int(rule.line)-1))
-                      if( rule_previous==None or (not isinstance(rule_previous, ImpFalseRule)) or formula1.left!=rule_previous.formula):
+                      if( rule_previous is None or (not isinstance(rule_previous, ImpFalseRule)) or formula1.left!=rule_previous.formula):
                         self.has_error = True
                         deduction_result.add_error(self.get_error(constants.INVALID_FALSE_IMPLICATION_PREVIOUS, rule.token_line, rule_ImpFalse))
                     #Verifica se a regra já foi utilizada anteriormente
@@ -1734,27 +1713,6 @@ class ParserAnita():
                 p[0][result[0].value] = result
                 return p[0]
 
-        # Premisse Rule without rule's name
-        # @self.pg.production('step : NUM DOT TRUE formula')
-        # def Premisse_rule(p):
-        #   token_line = p[0]
-        #   token_true_value = p[2]
-        #   token_formula = p[3]
-        #   premisse = PremisseRule(token_line, token_true_value, token_formula)
-        #   self.symbol_table.insert(premisse)
-        #   return token_line, formula
-
-        # # Conclusion Rule without rule's name
-        # @self.pg.production('step : NUM DOT FALSE formula')
-        # def Conclusion_rule(p):
-        #     token_line = p[0]
-        #     token_true_value = p[2]
-        #     token_formula = p[3]
-        #     formula = token_formula[1]
-        #     conclusion = ConclusionRule(token_line, token_true_value, token_formula)
-        #     self.symbol_table.insert(conclusion)
-        #     return token_line, formula
-
         # Alpha Rules without rule's name
         @self.pg.production('step : NUM DOT FALSE formula NUM')
         @self.pg.production('step : NUM DOT TRUE formula NUM')
@@ -1764,7 +1722,6 @@ class ParserAnita():
             token_formula = p[3]
             token_reference1 = p[4]
             formula = token_formula[1] 
-            true_value = token_true_value.value
             formula1 = self.symbol_table.lookup_formula_by_line(token_reference1.value, token_reference1.value)
             true_value_formula1 = self.symbol_table.lookup_true_value_by_line(token_reference1.value, token_reference1.value)
             if(isinstance(formula1, BinaryFormula) and formula1.is_conjunction() and true_value_formula1=='T'):
@@ -1860,7 +1817,6 @@ class ParserAnita():
             token_formula = p[4]
             token_reference1 = p[5]
             formula = token_formula[1] 
-            true_value = token_true_value.value
             formula1 = self.symbol_table.lookup_formula_by_line(token_reference1.value, token_reference1.value)
             true_value_formula1 = self.symbol_table.lookup_true_value_by_line(token_reference1.value, token_reference1.value)
             if(isinstance(formula1, BinaryFormula) and formula1.is_conjunction() and true_value_formula1=='T'):
@@ -1970,7 +1926,6 @@ class ParserAnita():
           token_line = p[0]
           token_true_value = p[2]
           token_formula = p[3]
-          token_symbol_rule = p[4]
           premisse = PremisseRule(token_line, token_true_value, token_formula)
           self.symbol_table.insert(premisse)
           if token_true_value.gettokentype() == 'FALSE':  
@@ -2003,7 +1958,6 @@ class ParserAnita():
             token_symbol_rule = p[4]
             token_reference1 = p[5]
             formula = token_formula[1] 
-            true_value = token_true_value.value
             andTrue = AndTrueRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
             self.symbol_table.insert(andTrue)
             if token_true_value.gettokentype() == 'FALSE':  
@@ -2021,7 +1975,6 @@ class ParserAnita():
             token_symbol_rule = p[5]
             token_reference1 = p[6]
             formula = token_formula[1] 
-            true_value = token_true_value.value
             
             andFalse = AndFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
             self.symbol_table.add_branch(token_line.value)
@@ -2040,7 +1993,6 @@ class ParserAnita():
             token_symbol_rule = p[5]
             token_reference1 = p[6]
             formula = token_formula[1] 
-            true_value = token_true_value.value
             
             OrTrue = OrTrueRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
             self.symbol_table.add_branch(token_line.value)
@@ -2058,7 +2010,6 @@ class ParserAnita():
             token_symbol_rule = p[4]
             token_reference1 = p[5]
             formula = token_formula[1] 
-            true_value = token_true_value.value
             
             orFalse = BasicRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
             self.symbol_table.insert(orFalse)
@@ -2075,7 +2026,6 @@ class ParserAnita():
             token_symbol_rule = p[4]
             token_reference1 = p[5]
             formula = token_formula[1] 
-            true_value = token_true_value.value
             
             orFalse = OrFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
             self.symbol_table.insert(orFalse)
@@ -2090,7 +2040,6 @@ class ParserAnita():
             token_symbol_rule = p[5]
             token_reference1 = p[6]
             formula = token_formula[1] 
-            true_value = token_true_value.value
             
             ImpTrue = ImpTrueRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
             self.symbol_table.add_branch(token_line.value)
@@ -2106,7 +2055,6 @@ class ParserAnita():
             token_symbol_rule = p[4]
             token_reference1 = p[5]
             formula = token_formula[1] 
-            true_value = token_true_value.value
             
             impFalse = ImpFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
             self.symbol_table.insert(impFalse)
@@ -2124,7 +2072,6 @@ class ParserAnita():
             token_symbol_rule = p[4]
             token_reference1 = p[5]
             formula = token_formula[1] 
-            true_value = token_true_value.value
             
             negation = NegationRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
             self.symbol_table.insert(negation)
@@ -2149,7 +2096,7 @@ class ParserAnita():
         def close_box(p):
             token = p[0]
             rule = self.symbol_table.get_last_rule_from_branch()
-            if rule==None:
+            if rule is None:
                 self.has_error = True
                 deduction_result.add_error(self.get_error(constants.BOX_MUST_BE_DISPOSED_BY_RULE, token, rule))              
                 return p[0], rule
@@ -2170,7 +2117,6 @@ class ParserAnita():
           token_symbol_rule = p[4]
           token_reference1 = p[5]
           formula = token_formula[1] 
-          true_value = token_true_value.value
           
           forall = ForAllTrueRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
           self.symbol_table.insert(forall)
@@ -2188,7 +2134,6 @@ class ParserAnita():
           token_symbol_rule = p[4]
           token_reference1 = p[5]
           formula = token_formula[1] 
-          true_value = token_true_value.value
           
           exists = ExistsFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
           self.symbol_table.insert(exists)
@@ -2206,7 +2151,6 @@ class ParserAnita():
           token_symbol_rule = p[4]
           token_reference1 = p[5]
           formula = token_formula[1] 
-          true_value = token_true_value.value
           
           forall = ForAllFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
           self.symbol_table.insert(forall)
@@ -2224,7 +2168,6 @@ class ParserAnita():
           token_symbol_rule = p[4]
           token_reference1 = p[5]
           formula = token_formula[1] 
-          true_value = token_true_value.value
           
           existsTrue = ExistsTrueRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
           self.symbol_table.insert(existsTrue)
@@ -2253,7 +2196,7 @@ class ParserAnita():
                 elif p[0].gettokentype() == 'NOT':
                     result = p[1]
                     return p[0], NegationFormula(formula=result[1])  
-                elif( not type(p[0]) is tuple):
+                elif type(p[0]) is not tuple:
                   result1 = p[0]
                   result2 = p[1]
                   # Universal Formula
@@ -2265,7 +2208,6 @@ class ParserAnita():
                     return p[0], UniversalFormula(variable=var, formula=p[1][1])
             elif len(p)==4:
               # Predicate Formula
-              name = p[0]
               varlist = p[2]
               return p[0], PredicateFormula(name=p[0].value,variables=varlist[1])            
             elif len(p) == 3:
@@ -2377,14 +2319,12 @@ class ParserAnita():
             erro += "^, Esta caixa dever ser fechada após a aplicação de pelo menos uma regra."
         elif type_error == constants.INVALID_SUBSTITUTION_UNIVERSAL:
             erro += "^, A fórmula {} não é uma substituição válida da fórmula universal refenciada na linha {}.".format(rule.formula.toString(), rule.reference1)
-#            erro += "^, A fórmula {} (conclusão da regra) não é uma fórmula universal obtida a partir da fórmula refenciada na linha {} com a variável escolhida neste escopo.".format(rule.formula.toString(), token_error.value)
         elif type_error == constants.INVALID_UNIVERSAL_FORMULA:
             erro += "^, A fórmula referenciada na linha {} não é uma fórmula do tipo universal com o valor de verdade {}.".format(rule.reference1, rule.true_value)
         elif type_error == constants.INVALID_EXISTENCIAL_FORMULA:
             erro += "^, A fórmula referenciada na linha {} não é uma fórmula do tipo existencial com o valor de verdade {}.".format(rule.reference1, rule.true_value)
         elif type_error == constants.INVALID_SUBSTITUTION_EXISTENCIAL:
             erro += "^, A fórmula {} não é uma substituição válida da fórmula existencial refenciada na linha {}.".format(rule.formula.toString(), rule.reference1)
-#            erro += "^, A fórmula refenciada na linha {} não é uma substituição correta da variável na fórmula do existencial desta regra.".format(token_error.value)
         elif type_error == constants.VARIABLE_IS_NOT_FRESH_VARIABLE:
             erro += "^, A variável utilizada nesta fórmula {} é uma variável livre de uma fórmula definida anteriormente e, portanto, não pode ser utilizada nesta regra.".format(rule.formula.toString())
         elif type_error == constants.INVALID_TRUE_CONJUNCTION_NEXT:
@@ -2475,14 +2415,14 @@ def check_proof(input_proof, input_theorem=None, display_theorem=True, display_c
         s_theorem = ParserAnita.toString(result.premisses, result.conclusion)
         set_premisses_result = set([p.toString() for p in result.premisses])
 
-        if input_theorem!=None: 
+        if input_theorem is not None: 
           premisses, conclusion = ParserTheorem.getTheorem(input_theorem)
-          if conclusion == None:
+          if conclusion is None:
             return f'{input_theorem} não é um teorema válido!'
           set_premisses = set([p.toString() for p in premisses])
 
         if(result.is_closed):
-          if(conclusion == None or (conclusion==result.conclusion and set_premisses==set_premisses_result)):
+          if(conclusion is None or (conclusion==result.conclusion and set_premisses==set_premisses_result)):
             r += "A demonstração está correta."
             if display_theorem:
               r += "\n"+s_theorem
@@ -2494,7 +2434,7 @@ def check_proof(input_proof, input_theorem=None, display_theorem=True, display_c
             r += "\nLatex com cor:\n"+str(result.colored_latex)
         else:
             if result.saturared_branches != []:
-              if(conclusion==None or (conclusion==result.conclusion and set_premisses==set_premisses_result)):
+              if(conclusion is None or (conclusion==result.conclusion and set_premisses==set_premisses_result)):
                 r += "O Teorema não é válido."
                 if display_theorem:
                   r += "\n"+result.theorem 
@@ -2502,7 +2442,6 @@ def check_proof(input_proof, input_theorem=None, display_theorem=True, display_c
                 r += "\nSão contra-exemplos:"
                 for s_v in result.counter_examples:
                     r += '\n  '+s_v
-#                r += "\n"+str(result.latex)
               if display_latex: 
                 r += "\nLatex:\nO Teorema ${}$ não é válido.\n".format(result.latex_theorem)
                 if display_countermodel:
@@ -2588,7 +2527,7 @@ class ParserTheorem():
                 elif p[0].gettokentype() == 'NOT':
                     result = p[1]
                     return p[0], NegationFormula(formula=result[1])  
-                elif( not type(p[0]) is tuple):
+                elif type(p[0]) is not tuple:
                   result1 = p[0]
                   result2 = p[1]
                   # Universal Formula
@@ -2600,7 +2539,6 @@ class ParserTheorem():
                     return p[0], UniversalFormula(variable=var, formula=p[1][1])
             elif len(p)==4:
               # Predicate Formula
-              name = p[0]
               varlist = p[2]
               return p[0], PredicateFormula(name=p[0].value,variables=varlist[1])            
             elif len(p) == 3:
@@ -2690,7 +2628,6 @@ class ParserTheorem():
           formulas, conclusion = parser.parse(tokens)
           return formulas, conclusion
         except ValueError:
-            s = traceback.format_exc()
             return [], None
         else:
             return [], None
@@ -2713,7 +2650,6 @@ class ParserTheorem():
 
 
 # PARSER DE UMA Fórmula
-import traceback
 
 class ParserFormula():
     def __init__(self, state):
@@ -2738,7 +2674,6 @@ class ParserFormula():
     def parse(self):
         @self.pg.production('program : formula')
         def program(p):
-            rule_info = p[0]
             return p[0][1]
 
         @self.pg.production('formula : EXT formula')
@@ -2752,7 +2687,6 @@ class ParserFormula():
         @self.pg.production('formula : ATHOM')
         @self.pg.production('formula : BOTTOM')
         def formula(p):
-            #print(p)
             if len(p) < 3:
                 if p[0].gettokentype() == 'ATHOM':
                     return p[0], AthomFormula(key=p[0].value)
@@ -2761,7 +2695,7 @@ class ParserFormula():
                 elif p[0].gettokentype() == 'NOT':
                     result = p[1]
                     return p[0], NegationFormula(formula=result[1])  
-                elif( not type(p[0]) is tuple):
+                elif type(p[0]) is not tuple:
                   result1 = p[0]
                   result2 = p[1]
                   # Universal Formula
@@ -2773,7 +2707,6 @@ class ParserFormula():
                     return p[0], UniversalFormula(variable=var, formula=p[1][1])
             elif len(p)==4:
               # Predicate Formula
-              name = p[0]
               varlist = p[2]
               return p[0], PredicateFormula(name=p[0].value,variables=varlist[1])            
             elif len(p) == 3:
@@ -2837,8 +2770,6 @@ class ParserFormula():
         erro += productions[token_error.getsourcepos().lineno-1] + "\n"
         for i in range(column_error-1):
             erro += ' '
-#        if type_error == constants.REFERENCED_FORMULE_NONE:## REVER SE NAO EXCLUIR
-#            erro += '^, A fórmula {} não foi definida anteriormente ou foi descartada.\n'.format(token_error.value)
         
         return erro
     
@@ -2856,8 +2787,6 @@ class ParserFormula():
           result = parser.parse(tokens)
           return result
         except ValueError:
-            s = traceback.format_exc()
-            #print (f'Erro ao fazer o parser da fórmula!')
             return None
         else:
             return None
