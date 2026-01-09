@@ -1,5 +1,4 @@
 import traceback
-import json
 from rply import ParserGenerator
 from rply import Token
 import sys
@@ -17,6 +16,7 @@ from models.quantifier_formula.UniversalFormula import UniversalFormula
 from models.quantifier_formula.ExistentialFormula import ExistentialFormula
 from models.lexer import Lexer
 from models.constants import constants
+from models.tableau_deduction_return import tableau_deduction_return
 
 ## File symbol_table.py
 
@@ -466,38 +466,6 @@ class SymbolTable:
 
 
 ## dados_json.py
-
-class tableau_deduction_return:
-    def __init__(self):
-        self.latex = ''
-        self.is_closed = False,
-        self.errors = []
-        self.premisses = []
-        self.conclusion = None
-        self.latex_theorem = ''
-        self.theorem = ''
-        self.counter_examples = None
-        self.colored_latex = ''
-        self.saturared_branches = []
-        self.open_branches = []
-
-    def add_error(self, error):
-        self.errors.append(error)
-
-    def to_json(self):
-        result = {
-            'latex': self.latex,
-            'errors': self.errors,
-            'premisses': self.premisses,
-            'conclusion': self.conclusion,
-            'is_closed': self.is_closed,
-            'theorem':self.theorem,
-            'latex_theorem': self.latex_theorem,
-            'colored_latex': self.colored_latex,
-            'counter_examples': self.counter_examples,
-        }
-        with open("result.json", "w", encoding='utf8') as f:
-            f.write(json.dumps(result, sort_keys=True, indent=3, ensure_ascii=False))
 
 ## File ast.py
 class PremisseRule():
@@ -1683,7 +1651,6 @@ class ParserAnita():
         @self.pg.production('formula : ATHOM')
         @self.pg.production('formula : BOTTOM')
         def formula(p):
-            #print(p)
             if len(p) < 3:
                 if p[0].gettokentype() == 'ATHOM':
                     return p[0], AthomFormula(key=p[0].value)
