@@ -1,5 +1,4 @@
 import traceback
-from rply import LexerGenerator
 import json
 from rply import ParserGenerator
 from rply import Token
@@ -17,6 +16,7 @@ from models.quantifier_formula.QuantifierFormula import QuantifierFormula
 from models.quantifier_formula.UniversalFormula import UniversalFormula
 from models.quantifier_formula.ExistentialFormula import ExistentialFormula
 from models.lexer import Lexer
+from models.constants import constants
 
 ## File symbol_table.py
 
@@ -498,58 +498,6 @@ class tableau_deduction_return:
         }
         with open("result.json", "w", encoding='utf8') as f:
             f.write(json.dumps(result, sort_keys=True, indent=3, ensure_ascii=False))
-
-## File constants.py
-class constants:
-  INVALID_RESULT = 1 # Conclusão inválida da regra
-  UNEXPECT_RESULT = 2 # Escolha errada de regra
-  USING_DESCARTED_RULE = 3
-  REFERENCED_LINE_NOT_DEFINED = 4
-  CLOSE_BRACKET_WITHOUT_BOX = 5
-  BOX_MUST_BE_DISPOSED = 6
-  INVALID_SUBSTITUTION_UNIVERSAL = 7
-  INVALID_UNIVERSAL_FORMULA = 8
-  INVALID_EXISTENCIAL_FORMULA = 9
-  INVALID_SUBSTITUTION_EXISTENCIAL = 10
-  VARIABLE_IS_NOT_FRESH_VARIABLE = 11
-  BOX_MUST_BE_DISPOSED_BY_RULE = 12
-  IS_NOT_DISJUNCTION_TRUE = 13
-  IS_NOT_DISJUNCTION_FALSE = 14
-  IS_NOT_NEGATION_TRUE = 15
-  IS_NOT_NEGATION_FALSE = 16
-  IS_NOT_CONJUNCTION_TRUE = 17
-  IS_NOT_CONJUNCTION_FALSE = 18
-  IS_NOT_IMPLICATION = 19
-  INVALID_LEFT_CONJUNCTION = 20
-  INVALID_RIGHT_CONJUNCTION = 21
-  INVALID_NEGATION = 22
-  INVALID_LEFT_OR_RIGHT_DISJUNCTION = 23
-  INVALID_LEFT_OR_RIGHT_CONJUNCTION = 24
-  INVALID_LEFT_IMPLICATION = 25
-  INVALID_RIGHT_IMPLICATION = 26
-  INVALID_LEFT_RIGHT_IMPLICATION = 27
-  INVALID_INITIAL_TABLEAU = 28
-  INVALID_TRUE_CONJUNCTION_NEXT = 29
-  INVALID_TRUE_CONJUNCTION_PREVIOUS = 30
-  INVALID_FALSE_DISJUNCTION_NEXT = 31
-  INVALID_FALSE_DISJUNCTION_PREVIOUS = 32
-  INVALID_FALSE_IMPLICATION_NEXT = 33
-  INVALID_FALSE_IMPLICATION_PREVIOUS = 34
-  INVALID_FALSE_CONJUNCTION_NEXT = 35
-  INVALID_FALSE_CONJUNCTION_PREVIOUS = 36
-  INVALID_TRUE_DISJUNCTION_NEXT = 37
-  INVALID_TRUE_DISJUNCTION_PREVIOUS = 38
-  INVALID_TRUE_IMPLICATION_NEXT = 39
-  INVALID_TRUE_IMPLICATION_PREVIOUS = 40
-  INVALID_BETA_RULE = 41
-  ALREADY_USED_RULE_IN_BRANCH = 42
-  PREMISSE_SHOULD_BE_TRUE = 43
-  CONCLUSION_SHOULD_BE_FALSE = 44
-  WRONG_TRUE_VALUE = 45
-  RULE_MUST_BE_BETA = 46
-  RULE_MUST_BE_ALPHA = 47
-  RULE_CANNOT_BE_APPLIED = 48
-
 
 ## File ast.py
 class PremisseRule():
