@@ -28,7 +28,6 @@ def anita(input_proof='', input_text_assumptions=[], input_text_conclusion='', h
     display(Markdown(q_conclusion))
     display(Markdown('### Represente as afirmações acima em lógica e digite sua demonstração em Tableau Analítico:'))
     if input_proof=='':
-      # input.value = '# Considere a seguinte linguagem não lógica:\n# - ...\n# - ...\n# - ...\n# Representamos as afirmações através das seguintes fórmulas:'
       input.value = '# Representamos as afirmações através das seguintes fórmulas:'
       i = 1
       for assumption in input_text_assumptions:
@@ -68,7 +67,7 @@ def anita(input_proof='', input_text_assumptions=[], input_text_conclusion='', h
               msg.append(result.colored_latex)
             display(widgets.HTML('<br>'.join(msg)))       
           else:
-            display(HTML(rf'<font color="red">Sua demonstração contém os seguintes erros:</font>'))
+            display(HTML(r'<font color="red">Sua demonstração contém os seguintes erros:</font>'))
             for error in result.errors:
                 print(error)
       except ValueError:
@@ -90,7 +89,7 @@ def anita_theorem(input_theorem, input_proof='', height_layout='300px',default_g
       layout=layout
       )
   premisses, conclusion = ParserTheorem.getTheorem(input_theorem)
-  if conclusion == None:
+  if conclusion is None:
     display(HTML(rf'<font color="red">{input_theorem} não é um teorema válido!</font>'))
     return
   cLatex = widgets.Checkbox(value=False, description='Exibir Latex')
@@ -132,7 +131,7 @@ def anita_theorem(input_theorem, input_proof='', height_layout='300px',default_g
               else:
                 display(HTML(rf'<font color="red">Sua demostração de {result.theorem} é válida, mas é diferente da demonstração solicitada {input_theorem}!</font>'))
           else:
-            display(HTML(rf'<font color="red">Sua demonstração contém os seguintes erros:</font>'))
+            display(HTML(r'<font color="red">Sua demonstração contém os seguintes erros:</font>'))
             for error in result.errors:
                 print(error)
       except ValueError:
@@ -163,7 +162,7 @@ def is_substitutable(input_formula='', input_var ='x', input_term='a'):
     with output:
       try:
           f = ParserFormula.getFormula(input_formula)
-          if(f!=None):
+          if(f is not None):
             if (f.is_substitutable(input_var,input_term) and cResult.value=='Sim'):
               display(HTML(r'<font color="blue">Parabéns você acertou a questão!</font>'))              
               display(HTML(rf'A variável {input_var} é substituível pelo termo {input_term} na fórmula {input_formula}.'))              
@@ -171,7 +170,7 @@ def is_substitutable(input_formula='', input_var ='x', input_term='a'):
               display(HTML(r'<font color="blue">Parabéns você acertou a questão!</font>'))              
               display(HTML(rf'A variável {input_var} não é substituível pelo termo {input_term} na fórmula {input_formula}.')) 
             else:
-              display(HTML(rf'<font color="red">Infelizmente, você errou a questão.</font>'))
+              display(HTML(r'<font color="red">Infelizmente, você errou a questão.</font>'))
           else:
             display(HTML(r'<font color="red">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>'))
       except ValueError:
@@ -204,11 +203,11 @@ def verify_variables(input_string='', input_formula = ''):
       try:
           result = ParserFormula.getFormula(input_formula)
           variables = set([x.strip() for x in input.value.strip().split(";")])
-          if(result!=None):
+          if(result is not None):
             if variables==result.all_variables():
               display(HTML(r'<font color="blue">Parabéns você acertou a questão.</font>'))              
             else:
-              display(HTML(rf'<font color="red">Você errou a questão.</font>'))
+              display(HTML(r'<font color="red">Você errou a questão.</font>'))
           else:
             display(HTML(r'<font color="red">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>'))
       except ValueError:
@@ -242,11 +241,11 @@ def verify_free_variables(input_string='', input_formula = ''):
       try:
           result = ParserFormula.getFormula(input_formula)
           variables = set([x.strip() for x in input.value.strip().split(";")])
-          if(result!=None):
+          if(result is not None):
             if variables==result.free_variables():
               display(HTML(r'<font color="blue">Parabéns você acertou a questão.</font>'))              
             else:
-              display(HTML(rf'<font color="red">Você errou a questão.</font>'))
+              display(HTML(r'<font color="red">Você errou a questão.</font>'))
           else:
             display(HTML(r'<font color="red">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>'))
       except ValueError:
@@ -279,11 +278,11 @@ def verify_bound_variables(input_string='', input_formula = ''):
       try:
           result = ParserFormula.getFormula(input_formula)
           variables = set([x.strip() for x in input.value.strip().split(";")])
-          if(result!=None):
+          if(result is not None):
             if variables==result.bound_variables():
               display(HTML(r'<font color="blue">Parabéns você acertou a questão.</font>'))              
             else:
-              display(HTML(rf'<font color="red">Você errou a questão.</font>'))
+              display(HTML(r'<font color="red">Você errou a questão.</font>'))
           else:
             display(HTML(r'<font color="red">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>'))
       except ValueError:
@@ -317,7 +316,7 @@ def verify_substitution(input_string='', input_formula = '', input_var ='x', inp
       try:
           f = ParserFormula.getFormula(input_formula)
           result = ParserFormula.getFormula(input.value)
-          if(result!=None):
+          if(result is not None):
             if result==f.substitution(input_var,input_term):
               display(HTML(r'<font color="blue">Parabéns essa é a subtituição correta:</font>'))              
               if(cLatex.value):
@@ -362,7 +361,7 @@ def verify_valid_conclusion(input_assumptions, input_conclusion, result_value=Fa
   def on_button_run_clicked(_):
     output.clear_output()
     with output:
-      if (cResult.value==None):
+      if (cResult.value is None):
         display(HTML('<font color="red">Escolha uma das alternativas! Tente novamente!</font>'))
       elif(result_value==(cResult.value=='Sim')):
         display(HTML('<font color="blue">Parabéns, você acertou a questão.</font>'))
@@ -392,7 +391,7 @@ def verify_formula(input_string=''):
     with output:
       try:
           result = ParserFormula.getFormula(input.value)
-          if(result!=None):
+          if(result is not None):
               display(HTML(r'<font color="blue">Parabéns essa é uma fórmula da lógica:</font>'))
               if(cLatex.value):
                 s = result.toLatex(parentheses=cParentheses.value)

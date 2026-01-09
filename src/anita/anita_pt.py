@@ -8,8 +8,10 @@ parser.add_argument("-o", type=str,help="Arquivo de saída do resultado da verif
 args = parser.parse_args()
 fileName = 'example_anita_pt.txt'
 fileSave = 'result_anita_pt.txt'
-if args.i is not None: fileName = args.i
-if args.o is not None: fileSave = args.o
+if args.i is not None: 
+    fileName = args.i
+if args.o is not None: 
+    fileSave = args.o
 
 try:
     f = open(fileName, 'r')
