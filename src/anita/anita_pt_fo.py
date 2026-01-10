@@ -3,35 +3,35 @@ from rply import ParserGenerator
 from rply import Token
 import sys
 
-from Rules.AndFalseRule import AndFalseRule
-from Rules.AndTrueRule import AndTrueRule
-from Rules.BasicRule import BasicRule
-from Rules.ClosedRule import ClosedRule
-from Rules.ConclusionRule import ConclusionRule
-from Rules.ExistsFalseRule import ExistsFalseRule
-from Rules.ExistsTrueRule import ExistsTrueRule
-from Rules.ForAllFalseRule import ForAllFalseRule
-from Rules.ForAllTrueRule import ForAllTrueRule
-from Rules.ImpFalseRule import ImpFalseRule
-from Rules.ImpTrueRule import ImpTrueRule
-from Rules.NegationRule import NegationRule
-from Rules.OrFalseRule import OrFalseRule
-from Rules.OrTrueRule import OrTrueRule
-from Rules.PremisseRule import PremisseRule
-from models.binary_formula.AndFormula import AndFormula
-from models.binary_formula.BinaryFormula import BinaryFormula
-from models.binary_formula.OrFormula import OrFormula
-from models.binary_formula.ImplicationFormula import ImplicationFormula
-from models.binary_formula.BiImplicationFormula import BiImplicationFormula
-from models.athom_formula.AtomFormula import AthomFormula
-from models.athom_formula.NegationFormula import NegationFormula
-from models.predicate_formula.PredicateFormula import PredicateFormula
-from models.quantifier_formula.QuantifierFormula import QuantifierFormula
-from models.quantifier_formula.UniversalFormula import UniversalFormula
-from models.quantifier_formula.ExistentialFormula import ExistentialFormula
-from models.lexer import Lexer
-from models.constants import constants
-from models.tableau_deduction_return import tableau_deduction_return
+from anita.rules.AndFalseRule import AndFalseRule
+from anita.rules.AndTrueRule import AndTrueRule
+from anita.rules.BasicRule import BasicRule
+from anita.rules.ClosedRule import ClosedRule
+from anita.rules.ConclusionRule import ConclusionRule
+from anita.rules.ExistsFalseRule import ExistsFalseRule
+from anita.rules.ExistsTrueRule import ExistsTrueRule
+from anita.rules.ForAllFalseRule import ForAllFalseRule
+from anita.rules.ForAllTrueRule import ForAllTrueRule
+from anita.rules.ImpFalseRule import ImpFalseRule
+from anita.rules.ImpTrueRule import ImpTrueRule
+from anita.rules.NegationRule import NegationRule
+from anita.rules.OrFalseRule import OrFalseRule
+from anita.rules.OrTrueRule import OrTrueRule
+from anita.rules.PremisseRule import PremisseRule
+from anita.formula.binary_formula.AndFormula import AndFormula
+from anita.formula.binary_formula.BinaryFormula import BinaryFormula
+from anita.formula.binary_formula.OrFormula import OrFormula
+from anita.formula.binary_formula.ImplicationFormula import ImplicationFormula
+from anita.formula.binary_formula.BiImplicationFormula import BiImplicationFormula
+from anita.formula.athom_formula.AtomFormula import AthomFormula
+from anita.formula.athom_formula.NegationFormula import NegationFormula
+from anita.formula.predicate_formula.PredicateFormula import PredicateFormula
+from anita.formula.quantifier_formula.QuantifierFormula import QuantifierFormula
+from anita.formula.quantifier_formula.UniversalFormula import UniversalFormula
+from anita.formula.quantifier_formula.ExistentialFormula import ExistentialFormula
+from anita.lexer.lexer import Lexer
+from anita.constants.constants import constants
+from anita.utils.tableau_deduction_return import tableau_deduction_return
 
 ## File symbol_table.py
 
