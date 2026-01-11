@@ -1,4 +1,7 @@
-class PremisseRule():
+from anita.rules.IRule import IRule
+
+
+class PremisseRule(IRule):
     def __init__(self, token_line, token_true_value, token_formula):
         self.token_line = token_line
         self.token_formula = token_formula[0]

@@ -1,7 +1,8 @@
 from anita.constants.constants import constants
+from anita.rules.IRule import IRule
 
 
-class ClosedRule():
+class ClosedRule(IRule):
     def __init__(self, token_line, token_formula, token_reference1, token_reference2, show_token_symbol=True):
         self.token_line = token_line
         self.token_formula = token_formula

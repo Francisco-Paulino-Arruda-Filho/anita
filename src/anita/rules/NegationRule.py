@@ -1,4 +1,5 @@
 from anita.constants.constants import constants
+from anita.rules.IRule import IRule
 from anita.rules.BasicRule import BasicRule
 from anita.formula.athom_formula.NegationFormula import NegationFormula
 

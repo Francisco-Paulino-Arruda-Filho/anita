@@ -1,5 +1,9 @@
+from abc import abstractmethod
 
-class BasicRule():
+from anita.rules.IRule import IRule
+
+
+class BasicRule(IRule):
     def __init__(self, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=True):
         self.token_line = token_line
         self.token_formula = token_formula[0]
@@ -11,6 +15,10 @@ class BasicRule():
         self.true_value = token_true_value.value
         self.reference1 = token_reference1.value
         self.show_token_symbol = show_token_symbol
+    
+    @abstractmethod
+    def evaluation(self, parser, deduction_result):
+        pass
         
     def toLatex(self, symbol_table):
         return '{}~{}'.format(self.true_value, self.formula.toLatex())

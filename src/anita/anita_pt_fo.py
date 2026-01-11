@@ -3,6 +3,7 @@ from rply import ParserGenerator
 from rply import Token
 import sys
 
+from anita.rules.RuleFactory import RuleFactory, RuleType
 from anita.rules.AndFalseRule import AndFalseRule
 from anita.rules.AndTrueRule import AndTrueRule
 from anita.rules.BasicRule import BasicRule
@@ -513,6 +514,7 @@ class ParserAnita():
         )
         self.symbol_table = SymbolTable()
         self.has_error = False
+        self.rule_factory = RuleFactory()
 
 
     def verify_sequence_lines_error(self, deduction_result):
@@ -817,7 +819,7 @@ class ParserAnita():
             true_value_formula1 = self.symbol_table.lookup_true_value_by_line(token_reference1.value, token_reference1.value)
             if(isinstance(formula1, BinaryFormula) and formula1.is_conjunction() and true_value_formula1=='T'):
               token_symbol_rule = Token('AND_TRUE', '&T')
-              f = AndTrueRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
+              f = self.rule_factory.create_rule(RuleType.AND_TRUE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
               self.symbol_table.insert(f)
               if token_true_value.gettokentype() == 'FALSE':  
                 self.has_error = True
@@ -830,7 +832,7 @@ class ParserAnita():
               deduction_result.add_error(self.get_error(constants.RULE_MUST_BE_BETA, token_reference1, f))              
             elif(isinstance(formula1, BinaryFormula) and formula1.is_disjunction() and true_value_formula1=='F'):
               token_symbol_rule = Token('OR_FALSE', '|F')
-              f = OrFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
+              f = self.rule_factory.create_rule(RuleType.OR_FALSE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
               self.symbol_table.insert(f)
               if token_true_value.gettokentype() == 'TRUE':  
                 self.has_error = True
@@ -843,7 +845,7 @@ class ParserAnita():
               deduction_result.add_error(self.get_error(constants.RULE_MUST_BE_BETA, token_reference1, f))              
             elif(isinstance(formula1, BinaryFormula) and formula1.is_implication() and true_value_formula1=='F'):
               token_symbol_rule = Token('IMP_FALSE', '->F')
-              f = ImpFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
+              f = self.rule_factory.create_rule(RuleType.IMPLICATION_FALSE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
               self.symbol_table.insert(f)
             elif(isinstance(formula1, BinaryFormula) and formula1.is_implication() and true_value_formula1=='T'):
               token_symbol_rule = Token('IMP_TRUE', '->T')
@@ -856,7 +858,7 @@ class ParserAnita():
                 token_symbol_rule = Token('NEG_TRUE', '~T')
               elif true_value_formula1=='F':
                 token_symbol_rule = Token('NEG_FALSE', '~F')
-              negation = NegationRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
+              negation = self.rule_factory.create_rule(RuleType.NEGATION_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
               self.symbol_table.insert(negation)
               if (token_true_value.gettokentype() == 'TRUE' and token_symbol_rule.gettokentype() == 'NEG_TRUE') or (token_true_value.gettokentype() == 'FALSE' and token_symbol_rule.gettokentype() == 'NEG_FALSE') :  
                 self.has_error = True
@@ -864,28 +866,28 @@ class ParserAnita():
 
             elif(isinstance(formula1, UniversalFormula) and true_value_formula1=='T'):
               token_symbol_rule = Token('ALL_TRUE', 'AT')
-              f = ForAllTrueRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
+              f = self.rule_factory.create_rule(RuleType.FOR_ALL_TRUE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
               self.symbol_table.insert(f)
               if token_true_value.gettokentype() == 'FALSE':  
                 self.has_error = True
                 deduction_result.add_error(self.get_error(constants.WRONG_TRUE_VALUE, token_true_value, f))              
             elif(isinstance(formula1, UniversalFormula)  and true_value_formula1=='F'):
               token_symbol_rule = Token('ALL_FALSE', 'AF')
-              f = ForAllFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
+              f = self.rule_factory.create_rule(RuleType.FOR_ALL_FALSE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
               self.symbol_table.insert(f)
               if token_true_value.gettokentype() == 'TRUE':  
                 self.has_error = True
                 deduction_result.add_error(self.get_error(constants.WRONG_TRUE_VALUE, token_true_value, f))              
             elif(isinstance(formula1, ExistentialFormula)  and true_value_formula1=='T'):
               token_symbol_rule = Token('EXT_TRUE', 'ET')
-              f = ExistsTrueRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
+              f = self.rule_factory.create_rule(RuleType.EXISTS_TRUE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
               self.symbol_table.insert(f)
               if token_true_value.gettokentype() == 'FALSE':  
                 self.has_error = True
                 deduction_result.add_error(self.get_error(constants.WRONG_TRUE_VALUE, token_true_value, f))              
             elif(isinstance(formula1, ExistentialFormula)  and true_value_formula1=='F'):
               token_symbol_rule = Token('EXT_FALSE', 'EF')
-              f = ExistsFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
+              f = self.rule_factory.create_rule(RuleType.EXISTS_FALSE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
               self.symbol_table.insert(f)
               if token_true_value.gettokentype() == 'TRUE':  
                 self.has_error = True
@@ -919,7 +921,7 @@ class ParserAnita():
               deduction_result.add_error(self.get_error(constants.RULE_MUST_BE_ALPHA, token_reference1, f))              
             elif(isinstance(formula1, BinaryFormula) and formula1.is_conjunction() and true_value_formula1=='F'):
               token_symbol_rule = Token('AND_FALSE', '&F')
-              f = AndFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
+              f = self.rule_factory.create_rule(RuleType.AND_FALSE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
               self.symbol_table.add_branch(token_line.value)
               self.symbol_table.insert(f)
               if token_true_value.gettokentype() == 'TRUE':  
@@ -934,7 +936,7 @@ class ParserAnita():
               deduction_result.add_error(self.get_error(constants.RULE_MUST_BE_ALPHA, token_reference1, f))              
             elif(isinstance(formula1, BinaryFormula) and formula1.is_disjunction() and true_value_formula1=='T'):
               token_symbol_rule = Token('OR_TRUE', '|T')
-              f = OrTrueRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
+              f = self.rule_factory.create_rule(RuleType.OR_TRUE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
               self.symbol_table.add_branch(token_line.value)
               self.symbol_table.insert(f)
               if token_true_value.gettokentype() == 'FALSE':  
@@ -949,7 +951,7 @@ class ParserAnita():
               deduction_result.add_error(self.get_error(constants.RULE_MUST_BE_ALPHA, token_reference1, f))              
             elif(isinstance(formula1, BinaryFormula) and formula1.is_implication() and true_value_formula1=='T'):
               token_symbol_rule = Token('IMP_TRUE', '->T')
-              f = ImpTrueRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
+              f = self.rule_factory.create_rule(RuleType.IMPLICATION_TRUE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
               self.symbol_table.add_branch(token_line.value)
               self.symbol_table.insert(f)
             elif(isinstance(formula1, NegationFormula)):
@@ -964,28 +966,28 @@ class ParserAnita():
               deduction_result.add_error(self.get_error(constants.RULE_MUST_BE_ALPHA, token_reference1, f))              
             elif(isinstance(formula1, UniversalFormula) and true_value_formula1=='T'):
               token_symbol_rule = Token('ALL_TRUE', 'AT')
-              f = ForAllTrueRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
+              f = self.rule_factory.create_rule(RuleType.FOR_ALL_TRUE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
               self.symbol_table.add_branch(token_line.value)
               self.symbol_table.insert(f)
               self.has_error = True
               deduction_result.add_error(self.get_error(constants.RULE_MUST_BE_ALPHA, token_reference1, f))              
             elif(isinstance(formula1, UniversalFormula)  and true_value_formula1=='F'):
               token_symbol_rule = Token('ALL_FALSE', 'AF')
-              f = ForAllFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
+              f = self.rule_factory.create_rule(RuleType.FOR_ALL_FALSE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
               self.symbol_table.add_branch(token_line.value)
               self.symbol_table.insert(f)
               self.has_error = True
               deduction_result.add_error(self.get_error(constants.RULE_MUST_BE_ALPHA, token_reference1, f))              
             elif(isinstance(formula1, ExistentialFormula)  and true_value_formula1=='T'):
               token_symbol_rule = Token('EXT_TRUE', 'ET')
-              f = ExistsTrueRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
+              f = self.rule_factory.create_rule(RuleType.EXISTS_TRUE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
               self.symbol_table.add_branch(token_line.value)
               self.symbol_table.insert(f)
               self.has_error = True
               deduction_result.add_error(self.get_error(constants.RULE_MUST_BE_ALPHA, token_reference1, f))              
             elif(isinstance(formula1, ExistentialFormula)  and true_value_formula1=='F'):
               token_symbol_rule = Token('EXT_FALSE', 'EF')
-              f = ExistsFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
+              f = self.rule_factory.create_rule(RuleType.EXISTS_FALSE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1, show_token_symbol=False)
               self.symbol_table.add_branch(token_line.value)
               self.symbol_table.insert(f)
               self.has_error = True
@@ -1049,7 +1051,7 @@ class ParserAnita():
             token_symbol_rule = p[4]
             token_reference1 = p[5]
             formula = token_formula[1] 
-            andTrue = AndTrueRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
+            andTrue = self.rule_factory.create_rule(RuleType.AND_TRUE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
             self.symbol_table.insert(andTrue)
             if token_true_value.gettokentype() == 'FALSE':  
               self.has_error = True
@@ -1067,7 +1069,7 @@ class ParserAnita():
             token_reference1 = p[6]
             formula = token_formula[1] 
             
-            andFalse = AndFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
+            andFalse = self.rule_factory.create_rule(RuleType.AND_FALSE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
             self.symbol_table.add_branch(token_line.value)
             self.symbol_table.insert(andFalse)
             if token_true_value.gettokentype() == 'TRUE':  
@@ -1085,7 +1087,7 @@ class ParserAnita():
             token_reference1 = p[6]
             formula = token_formula[1] 
             
-            OrTrue = OrTrueRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
+            OrTrue = self.rule_factory.create_rule(RuleType.OR_TRUE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
             self.symbol_table.add_branch(token_line.value)
             self.symbol_table.insert(OrTrue)
             if token_true_value.gettokentype() == 'FALSE':  
@@ -1118,7 +1120,7 @@ class ParserAnita():
             token_reference1 = p[5]
             formula = token_formula[1] 
             
-            orFalse = OrFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
+            orFalse = self.rule_factory.create_rule(RuleType.OR_FALSE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
             self.symbol_table.insert(orFalse)
             return token_line, formula
 
@@ -1132,7 +1134,7 @@ class ParserAnita():
             token_reference1 = p[6]
             formula = token_formula[1] 
             
-            ImpTrue = ImpTrueRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
+            ImpTrue = self.rule_factory.create_rule(RuleType.IMPLICATION_TRUE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
             self.symbol_table.add_branch(token_line.value)
             self.symbol_table.insert(ImpTrue)
             return token_line, formula
@@ -1147,7 +1149,7 @@ class ParserAnita():
             token_reference1 = p[5]
             formula = token_formula[1] 
             
-            impFalse = ImpFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
+            impFalse = self.rule_factory.create_rule(RuleType.IMPLICATION_FALSE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
             self.symbol_table.insert(impFalse)
             return token_line, formula
 
@@ -1164,7 +1166,7 @@ class ParserAnita():
             token_reference1 = p[5]
             formula = token_formula[1] 
             
-            negation = NegationRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
+            negation = self.rule_factory.create_rule(RuleType.NEGATION_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
             self.symbol_table.insert(negation)
             if (token_true_value.gettokentype() == 'TRUE' and token_symbol_rule.gettokentype() == 'NEG_TRUE') or (token_true_value.gettokentype() == 'FALSE' and token_symbol_rule.gettokentype() == 'NEG_FALSE') :  
               self.has_error = True
@@ -1243,7 +1245,7 @@ class ParserAnita():
           token_reference1 = p[5]
           formula = token_formula[1] 
           
-          forall = ForAllFalseRule(token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
+          forall = RuleFactory.RuleFactory.create_rule(RuleType.RuleType.FOR_ALL_FALSE_RULE, token_line, token_true_value, token_formula, token_symbol_rule, token_reference1)
           self.symbol_table.insert(forall)
           if token_true_value.gettokentype() == 'TRUE':  
             self.has_error = True
