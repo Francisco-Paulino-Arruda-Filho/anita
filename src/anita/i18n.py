@@ -2,7 +2,7 @@ import json
 import os
 import locale
 
-TRANSLATIONS_PATH = os.path.join(os.path.dirname(__file__), 'anita_gui_strings.json')
+TRANSLATIONS_PATH = os.path.join(os.path.dirname(__file__), 'anita_strings.json')
 
 with open(TRANSLATIONS_PATH, encoding='utf-8') as f:
     TRANSLATIONS = json.load(f)

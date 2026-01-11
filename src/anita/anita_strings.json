@@ -1,0 +1,548 @@
+{
+  "BTN_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "ANITA_INPUT_PROOF_PLACEHOLDER": {"en": "Enter your proof", "pt": "Digite sua demonstração"},
+  "CHECKBOX_SHOW_LATEX": {"en": "Display LaTeX", "pt": "Exibir Latex"},
+
+  "ANITA_CONSIDER_ASSUMPTIONS_TITLE": {"pt": "<b>Considere as seguintes afirmações:</b>"},
+  "ANITA_CONSIDER_CONCLUSION_TEXT": {"pt": "<b>Considere a afirmação abaixo segue logicamente das afirmações acima:"},
+  "ANITA_REPRESENT_AND_PROVE_TEXT": {"pt": "### Represente as afirmações acima em lógica e digite sua demonstração em Tableau Analítico:"},
+  "ANITA_REPRESENT_FORMULAS_HEADER": {"pt": "# Representamos as afirmações através das seguintes fórmulas:"},
+  "ANITA_REPRESENT_FOR": {"pt": "para"},
+  "ANITA_SHOW_VALID_REASONING": {"pt": "# Assim, devemos demonstrar que o raciocínio abaixo é válido:"},
+
+  "ANITA_TYPE_PROOF_TITLE": {
+    "en": "<h3>Enter your proof in Analytic Tableau:</h3>",
+    "pt": "### Digite sua demonstração em Tableau Analítico:"
+  },
+  "ANITA_PROOF_CORRECT": {
+    "en": "<font color=\"blue\">Congratulations! The proof of {theorem} is valid.</font>",
+    "pt": "<font color=\"blue\">Parabéns! A demonstração de {theorem} está correta.</font>"
+  },
+  "ANITA_THEOREM_NOT_VALID": {
+    "en": "<font color=\"blue\">Theorem {theorem} is not valid.</font>",
+    "pt": "<font color=\"blue\">O teorema {theorem} não é válido.</font>"
+  },
+  "ANITA_COUNTEREXAMPLES_LABEL": {
+    "en": "Countermodels:",
+    "pt": "São contra-exemplos:"
+  },
+  "ANITA_PROOF_INCOMPLETE": {
+    "en": "<font color=\"red\">The proof of {theorem} is not complete.</font>",
+    "pt": "<font color=\"red\">A demonstração de {theorem} não está completa.</font>"
+  },
+  "ANITA_UNSATURATED_BRANCHES_LABEL": {
+    "en": "The branches below are not saturated:",
+    "pt": "Os ramos abaixo não estão saturados:"
+  },
+  "ANITA_BRANCH_LABEL": {"en": "Branch:", "pt": "Ramo:"},
+  "ANITA_LATEX_CODE_LABEL": {"en": "LaTeX Code:", "pt": "Código Latex:"},
+  "ANITA_PROOF_ERRORS_TITLE": {
+    "en": "<font color=\"red\">The proof is not correct:</font>",
+    "pt": "<font color=\"red\">Sua demonstração contém os seguintes erros:</font>"
+  },
+
+  "ANITA_THEOREM_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "ANITA_THEOREM_INPUT_PLACEHOLDER": {"en": "Enter your proof:", "pt": "Digite sua demonstração:"},
+  "ANITA_THEOREM_INVALID": {
+    "en": "<font color=\"red\">Theorem {theorem} is not valid.</font>",
+    "pt": "<font color=\"red\">{theorem} não é um teorema válido!</font>"
+  },
+  "ANITA_THEOREM_CHECKBOX_LATEX": {"en": "Display LaTeX", "pt": "Exibir Latex"},
+  "ANITA_THEOREM_TITLE": {
+    "en": "<h3>Enter the proof of {theorem} in Analytic Tableau:</h3>",
+    "pt": "Digite a demonstração de {theorem} em Tableau Analítico:"
+  },
+  "ANITA_THEOREM_CORRECT": {
+    "en": "<font color=\"blue\">Congratulations! The proof of {theorem} is valid.</font>",
+    "pt": "<font color=\"blue\">Parabéns! A demonstração de {theorem} está correta.</font>"
+  },
+  "ANITA_THEOREM_NOT_VALID_2": {
+    "en": "<font color=\"blue\">Theorem {theorem} is not valid.</font>",
+    "pt": "<font color=\"blue\">O teorema {theorem} não é válido.</font>"
+  },
+  "ANITA_THEOREM_COUNTEREXAMPLES_LABEL": {
+    "en": "Countermodels:",
+    "pt": "São contra-exemplos:"
+  },
+  "ANITA_THEOREM_INCOMPLETE": {
+    "en": "<font color=\"red\">The proof of {theorem} is not complete.</font>",
+    "pt": "<font color=\"red\">A demonstração de {theorem} não está completa.</font>"
+  },
+  "ANITA_THEOREM_UNSATURATED_BRANCHES_LABEL": {
+    "en": "The branches below are not saturated:",
+    "pt": "Os ramos abaixo não estão saturados:"
+  },
+  "ANITA_THEOREM_BRANCH_LABEL": {"en": "Branch:", "pt": "Ramo:"},
+  "ANITA_THEOREM_LATEX_CODE_LABEL": {"en": "LaTeX Code:", "pt": "Código Latex:"},
+  "ANITA_THEOREM_ERRORS_TITLE": {
+    "en": "<font color=\"red\">The proof is not correct:</font>",
+    "pt": "<font color=\"red\">Sua demonstração contém os seguintes erros:</font>"
+  },
+  "ANITA_THEOREM_WRONG_PROOF": {
+    "en": "<font color=\"red\">Proof of {theorem} is valid, but it is not {input_theorem}!</font>",
+    "pt": "<font color=\"red\">Sua demostração de {theorem} é válida, mas é diferente da demonstração solicitada {input_theorem}!</font>"
+  },
+
+  "SUBSTITUTABLE_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "SUBSTITUTABLE_OPTIONS_YES": {"en": "Yes", "pt": "Sim"},
+  "SUBSTITUTABLE_OPTIONS_NO": {"en": "No", "pt": "Não"},
+  "SUBSTITUTABLE_ANSWER_LABEL": {"en": "Answer:", "pt": "Resposta:"},
+  "SUBSTITUTABLE_QUESTION": {
+    "en": "The variable {var} is substitutable by the term {term} in the formula {formula}:",
+    "pt": "A variável {var} é substituível pelo termo {term} na fórmula {formula}:"
+  },
+  "SUBSTITUTABLE_RIGHT_ANSWER": {
+    "en": "<font color=\"blue\">Congratulations you got the question right!</font>",
+    "pt": "<font color=\"blue\">Parabéns você acertou a questão!</font>"
+  },
+  "SUBSTITUTABLE_RIGHT_ANSWER_IS": {
+    "en": "The variable {var} is substitutable by the term {term} in the formula {formula}.",
+    "pt": "A variável {var} é substituível pelo termo {term} na fórmula {formula}."
+  },
+  "SUBSTITUTABLE_RIGHT_ANSWER_IS_NOT": {
+    "en": "The variable {var} is not substitutable by the term {term} in the formula {formula}.",
+    "pt": "A variável {var} não é substituível pelo termo {term} na fórmula {formula}."
+  },
+  "SUBSTITUTABLE_WRONG_ANSWER": {
+    "en": "<font color=\"red\">Unfortunately, you got the question wrong.</font>",
+    "pt": "<font color=\"red\">Infelizmente, você errou a questão.</font>"
+  },
+  "SUBSTITUTABLE_INVALID_FORMULA": {
+    "en": "<font color=\"red\">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>",
+    "pt": "<font color=\"red\">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>"
+  },
+
+  "VERIFY_VARIABLES_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_VARIABLES_PLACEHOLDER": {
+    "en": "Enter the variables separated by ; (semicolon)",
+    "pt": "Digite as variáveis separadas por ;"
+  },
+  "VERIFY_VARIABLES_PROMPT": {
+    "en": "Enter the set of variables of the formula {formula}:",
+    "pt": "Digite o conjunto de variáve\nis da fórmula {formula}:"
+  },
+  "VERIFY_VARIABLES_HINT": {
+    "en": "Each element of your set must be separated by ; (semicolon)",
+    "pt": "Cada elemento do seu conjunto deve ser separado por ; (ponto-e-vírgula)"
+  },
+  "VERIFY_VARIABLES_RIGHT_ANSWER": {
+    "en": "<font color=\"blue\">Congratulations, you got the question right!</font>",
+    "pt": "<font color=\"blue\">Parabéns você acertou a questão.</font>"
+  },
+  "VERIFY_VARIABLES_WRONG_ANSWER": {
+    "en": "<font color=\"red\">Unfortunately, you got the question wrong.</font>",
+    "pt": "<font color=\"red\">Você errou a questão.</font>"
+  },
+  "VERIFY_VARIABLES_INVALID_FORMULA": {
+    "en": "<font color=\"red\">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>",
+    "pt": "<font color=\"red\">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>"
+  },
+
+  "VERIFY_FREE_VARIABLES_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_FREE_VARIABLES_PLACEHOLDER": {
+    "en": "Enter the variables separated by ; (semicolon)",
+    "pt": "Digite as variáveis separadas por ;"
+  },
+  "VERIFY_FREE_VARIABLES_PROMPT": {
+    "en": "Enter the set of the free variables of the formula {formula}:",
+    "pt": "Digite o conjunto de variáve\nis livres da fórmula {formula}:"
+  },
+  "VERIFY_FREE_VARIABLES_HINT": {
+    "en": "Each element of your set must be separated by ; (semicolon)",
+    "pt": "Cada elemento do seu conjunto deve ser separado por ; (ponto-e-vírgula)"
+  },
+  "VERIFY_FREE_VARIABLES_RIGHT_ANSWER": {
+    "en": "<font color=\"blue\">Congratulations, you got the question right!</font>",
+    "pt": "<font color=\"blue\">Parabéns você acertou a questão.</font>"
+  },
+  "VERIFY_FREE_VARIABLES_WRONG_ANSWER": {
+    "en": "<font color=\"red\">Unfortunately, you got the question wrong.</font>",
+    "pt": "<font color=\"red\">Você errou a questão.</font>"
+  },
+  "VERIFY_FREE_VARIABLES_INVALID_FORMULA": {
+    "en": "<font color=\"red\">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>",
+    "pt": "<font color=\"red\">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>"
+  },
+
+  "VERIFY_BOUND_VARIABLES_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_BOUND_VARIABLES_PLACEHOLDER": {
+    "en": "Enter the variables separated by ; (semicolon)",
+    "pt": "Digite as variáveis separadas por ;"
+  },
+  "VERIFY_BOUND_VARIABLES_PROMPT": {
+    "en": "Enter the set of bound variables of the formula {formula}:",
+    "pt": "Digite o conjunto de variáve\nis ligadas da fórmula {formula}:"
+  },
+  "VERIFY_BOUND_VARIABLES_HINT": {
+    "en": "Each element of your set must be separated by ; (semicolon)",
+    "pt": "Cada elemento do seu conjunto deve ser separado por ; (ponto-e-vírgula)"
+  },
+  "VERIFY_BOUND_VARIABLES_RIGHT_ANSWER": {
+    "en": "<font color=\"blue\">Congratulations, you got the question right!</font>",
+    "pt": "<font color=\"blue\">Parabéns você acertou a questão.</font>"
+  },
+  "VERIFY_BOUND_VARIABLES_WRONG_ANSWER": {
+    "en": "<font color=\"red\">Unfortunately, you got the question wrong.</font>",
+    "pt": "<font color=\"red\">Você errou a questão.</font>"
+  },
+  "VERIFY_BOUND_VARIABLES_INVALID_FORMULA": {
+    "en": "<font color=\"red\">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>",
+    "pt": "<font color=\"red\">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>"
+  },
+
+  "VERIFY_SUBSTITUTION_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_SUBSTITUTION_PLACEHOLDER": {
+    "en": "Enter your formula:",
+    "pt": "Digite sua fórmula:"
+  },
+  "VERIFY_SUBSTITUTION_CHECKBOX_PARENTHESES": {
+    "en": "Display Formula with Parentheses",
+    "pt": "Exibir Fórmula com Parênteses"
+  },
+  "VERIFY_SUBSTITUTION_CHECKBOX_LATEX": {
+    "en": "Display Formula in LaTeX",
+    "pt": "Exibir Fórmula em Latex"
+  },
+  "VERIFY_SUBSTITUTION_PROMPT": {
+    "en": "Enter the formula that results from substitution the variable {var} with the term {term} in the formula {formula}:",
+    "pt": "Digite a fórmula que é resultado da substituição da variável {var} pelo termo {term} na fórmula {formula}:"
+  },
+  "VERIFY_SUBSTITUTION_RIGHT_ANSWER": {
+    "en": "<font color=\"blue\">Congratulations this is the correct substitution:</font>",
+    "pt": "<font color=\"blue\">Parabéns essa é a subtituição correta:</font>"
+  },
+  "VERIFY_SUBSTITUTION_WRONG_ANSWER": {
+    "en": "<font color=\"red\">The formula {result} is not the result of substitution {var} with {term} in the formula {formula}.</font>",
+    "pt": "<font color=\"red\">A fórmula {result} não é o resultado da substituição de {var} por {term} na fórmula {formula}.</font>"
+  },
+  "VERIFY_SUBSTITUTION_INVALID_FORMULA": {
+    "en": "<font color=\"red\">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>",
+    "pt": "<font color=\"red\">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>"
+  },
+
+  "VERIFY_VALID_CONCLUSION_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_VALID_CONCLUSION_OPTIONS_YES": {"en": "Yes", "pt": "Sim"},
+  "VERIFY_VALID_CONCLUSION_OPTIONS_NO": {"en": "No", "pt": "Não"},
+  "VERIFY_VALID_CONCLUSION_ANSWER_LABEL": {"en": "Answer:", "pt": "Resposta:"},
+  "VERIFY_VALID_CONCLUSION_INTRO": {
+    "en": "Consider the following statements:",
+    "pt": "Considere as seguintes afirmações:"
+  },
+  "VERIFY_VALID_CONCLUSION_QUESTION": {
+    "en": "Can we conclude that the statement below follows logically from the statements above?",
+    "pt": "Podemos concluir que a afirmação abaixo segue logicamente das afirmações acima?"
+  },
+  "VERIFY_VALID_CONCLUSION_CHOOSE_OPTION": {
+    "en": "<font color=\"red\">Choose one of the alternatives! Try again!</font>",
+    "pt": "<font color=\"red\">Escolha uma das alternativas! Tente novamente!</font>"
+  },
+  "VERIFY_VALID_CONCLUSION_RIGHT_ANSWER": {
+    "en": "<font color=\"blue\">Congratulations, you got the question right.</font>",
+    "pt": "<font color=\"blue\">Parabéns, você acertou a questão.</font>"
+  },
+  "VERIFY_VALID_CONCLUSION_WRONG_ANSWER": {
+    "en": "<font color=\"red\">Unfortunately, you got the question wrong. Try again!</font>",
+    "pt": "<font color=\"red\">Infelizmente, você errou a questão. Tente novamente!</font>"
+  },
+
+  "VERIFY_FORMULA_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_FORMULA_PLACEHOLDER": {"en": "Enter your formula:", "pt": "Digite sua fórmula:"},
+  "VERIFY_FORMULA_CHECKBOX_PARENTHESES": {
+    "en": "Display Formula with Parentheses",
+    "pt": "Exibir Fórmula com Parênteses"
+  },
+  "VERIFY_FORMULA_CHECKBOX_LATEX": {
+    "en": "Display Formula in LaTeX",
+    "pt": "Exibir Fórmula em Latex"
+  },
+  "VERIFY_FORMULA_PROMPT": {"en": "Enter your formula:", "pt": "Digite sua fórmula:"},
+  "VERIFY_FORMULA_RIGHT_ANSWER": {
+    "en": "<font color=\"blue\">Congratulations this is a formula of logic:</font>",
+    "pt": "<font color=\"blue\">Parabéns essa é uma fórmula da lógica:</font>"
+  },
+
+  "ERROR_INVALID_INITIAL_TABLEAU": {
+    "en": "^, The initial tableau should start with the premises followed by the conclusion. After the initial tableau, it is not allowed to add premises or conclusion.",
+    "pt": "^, O tableau inicial deve começar com as premissas seguidas pela conclusão. Após o tableau inicial, não é permitido adicionar premissas ou conclusão."
+  },
+  "ERROR_INVALID_RESULT": {
+    "en": "^, Formula {formula} is not a valid result for this rule.",
+    "pt": "^, A fórmula {formula} não é um resultado válido para esta regra."
+  },
+  "ERROR_UNEXPECT_RESULT": {
+    "en": "^, Formula {formula} is not a valid result for this rule.",
+    "pt": "^, A fórmula {formula} não é um resultado válido para esta regra."
+  },
+  "ERROR_IS_NOT_DISJUNCTION_FALSE": {
+    "en": "^, The formula referenced in line {line} is not a signed formula F with a disjunction.",
+    "pt": "^, A fórmula referenciada na linha {line} não é uma fórmula assinada F com uma disjunção."
+  },
+  "ERROR_IS_NOT_DISJUNCTION_TRUE": {
+    "en": "^, The formula referenced in line {line} is not a signed formula T with a disjunction.",
+    "pt": "^, A fórmula referenciada na linha {line} não é uma fórmula assinada T com uma disjunção."
+  },
+  "ERROR_IS_NOT_CONJUNCTION_FALSE": {
+    "en": "^, The formula referenced in line {line} is not a signed formula F with a conjunction.",
+    "pt": "^, A fórmula referenciada na linha {line} não é uma fórmula assinada F com uma conjunção."
+  },
+  "ERROR_IS_NOT_CONJUNCTION_TRUE": {
+    "en": "^, The formula referenced in line {line} is not a signed formula T with a conjunction.",
+    "pt": "^, A fórmula referenciada na linha {line} não é uma fórmula assinada T com uma conjunção."
+  },
+  "ERROR_IS_NOT_NEGATION_FALSE": {
+    "en": "^, The formula referenced in line {line} is not a signed formula F with a negation.",
+    "pt": "^, A fórmula referenciada na linha {line} não é uma fórmula assinada F com uma negação."
+  },
+  "ERROR_IS_NOT_NEGATION_TRUE": {
+    "en": "^, The formula referenced in line {line} is not a signed formula T with a negation.",
+    "pt": "^, A fórmula referenciada na linha {line} não é uma fórmula assinada T com uma negação."
+  },
+  "ERROR_IS_NOT_IMPLICATION": {
+    "en": "^,  The formula referenced in line {line} is not a implication.",
+    "pt": "^,  A fórmula referenciada na linha {line} não é uma implicação."
+  },
+  "ERROR_INVALID_NEGATION": {
+    "en": "^, None of the formulas referenced by the lines contradict the other formula.",
+    "pt": "^, Nenhuma das fórmulas referenciadas pelas linhas contradiz a outra fórmula."
+  },
+  "ERROR_INVALID_LEFT_IMPLICATION": {
+    "en": "^, Formula {formula} (conclusion of the rule) must be the antecedent of the implication of the referenced formula with truth-value F.",
+    "pt": "^, A fórmula {formula} (conclusão da regra) deve ser o antecedente da implicação da fórmula referenciada com valor-verdade F."
+  },
+  "ERROR_INVALID_RIGHT_IMPLICATION": {
+    "en": "^, Formula {formula} (conclusion of the rule) must be the consequent of the implication of the referenced formula with truth-value T.",
+    "pt": "^, A fórmula {formula} (conclusão da regra) deve ser o consequente da implicação da fórmula referenciada com valor-verdade T."
+  },
+  "ERROR_INVALID_LEFT_RIGHT_IMPLICATION": {
+    "en": "^, Formula {formula} (conclusion of the rule) must be the antecedent or consequent of the implication of the referenced formula.",
+    "pt": "^, A fórmula {formula} (conclusão da regra) deve ser o antecedente ou consequente da implicação da fórmula referenciada."
+  },
+  "ERROR_INVALID_LEFT_CONJUNCTION": {
+    "en": "^, Formula on the left formula of the conclusion is not proof by any of the lines referenced in this rule.",
+    "pt": "^, A fórmula à esquerda da conclusão não é provada por nenhuma das linhas referenciadas nesta regra."
+  },
+  "ERROR_INVALID_RIGHT_CONJUNCTION": {
+    "en": "^, Formula on the right formula of the conclusion is not proof by any of the lines referenced in this rule.",
+    "pt": "^, A fórmula à direita da conclusão não é provada por nenhuma das linhas referenciadas nesta regra."
+  },
+  "ERROR_INVALID_LEFT_OR_RIGHT_DISJUNCTION": {
+    "en": "^, Formula to the right or left of the conclusion formula must be the same as the formula reference in line {line}.",
+    "pt": "^, A fórmula à direita ou à esquerda da fórmula de conclusão deve ser a mesma que a fórmula referenciada na linha {line}."
+  },
+  "ERROR_INVALID_LEFT_OR_RIGHT_CONJUNCTION": {
+    "en": "^, Formula {formula} (conclusion of rule) must be the same as the right or left formula of line {line}.",
+    "pt": "^, A fórmula {formula} (conclusão da regra) deve ser a mesma que a fórmula da direita ou esquerda da linha {line}."
+  },
+  "ERROR_USING_DESCARTED_RULE": {
+    "en": "^, The reference to the line formula {line} cannot be used, as this formula does not belong to this branch.",
+    "pt": "^, A referência à linha da fórmula {line} não pode ser usada, pois esta fórmula não pertence a este ramo."
+  },
+  "ERROR_REFERENCED_LINE_NOT_DEFINED": {
+    "en": "^, The reference to the line formula {line} cannot be used, as all references must occur before this rule.",
+    "pt": "^, A referência à linha da fórmula {line} não pode ser usada, pois todas as referências devem ocorrer antes desta regra."
+  },
+  "ERROR_CLOSE_BRACKET_WITHOUT_BOX": {
+    "en": "^, Closing branches without an open branch.",
+    "pt": "^, Fechando ramos sem um ramo aberto."
+  },
+  "ERROR_BOX_MUST_BE_DISPOSED": {
+    "en": "^,The open branch must be closed.",
+    "pt": "^, O ramo aberto deve ser fechado."
+  },
+  "ERROR_BOX_MUST_BE_DISPOSED_BY_RULE": {
+    "en": "^, This branch must be closed after applying at least one rule.",
+    "pt": "^, Este ramo deve ser fechado após aplicar pelo menos uma regra."
+  },
+  "ERROR_INVALID_SUBSTITUTION_UNIVERSAL": {
+    "en": "^, Formula {formula} is not a valid substitution for the universal formula referenced in line {line}.",
+    "pt": "^, A fórmula {formula} não é uma substituição válida para a fórmula universal referenciada na linha {line}."
+  },
+  "ERROR_INVALID_UNIVERSAL_FORMULA": {
+    "en": "^, Formula referenced in line {line} is not a universal formula with truth-value {value}.",
+    "pt": "^, A fórmula referenciada na linha {line} não é uma fórmula universal com valor-verdade {value}."
+  },
+  "ERROR_INVALID_EXISTENCIAL_FORMULA": {
+    "en": "^, Formula referenced in line {line} is not a existential formula with truth-value {value}.",
+    "pt": "^, A fórmula referenciada na linha {line} não é uma fórmula existencial com valor-verdade {value}."
+  },
+  "ERROR_INVALID_SUBSTITUTION_EXISTENCIAL": {
+    "en": "^, Formula {formula} is not a valid substitutuion for the existential formula referenced in the line {line}.",
+    "pt": "^, A fórmula {formula} não é uma substituição válida para a fórmula existencial referenciada na linha {line}."
+  },
+  "ERROR_VARIABLE_IS_NOT_FRESH_VARIABLE": {
+    "en": "^, The variable used in this formula {formula} is not a new variable and therefore cannot be used in this rule.",
+    "pt": "^, A variável usada nesta fórmula {formula} não é uma variável nova e, portanto, não pode ser usada nesta regra."
+  },
+  "ERROR_INVALID_TRUE_CONJUNCTION_NEXT": {
+    "en": "^, The next line should be the &T rule with the formula {formula}.",
+    "pt": "^, A próxima linha deve ser a regra &T com a fórmula {formula}."
+  },
+  "ERROR_INVALID_TRUE_CONJUNCTION_PREVIOUS": {
+    "en": "^, The previous line should be the &T rule with the formula {formula}.",
+    "pt": "^, A linha anterior deve ser a regra &T com a fórmula {formula}."
+  },
+  "ERROR_INVALID_FALSE_DISJUNCTION_NEXT": {
+    "en": "^, The next line should be the rule |F with the formula {formula}.",
+    "pt": "^, A próxima linha deve ser a regra |F com a fórmula {formula}."
+  },
+  "ERROR_INVALID_FALSE_DISJUNCTION_PREVIOUS": {
+    "en": "^, The previous line should be the |F rule with the formula {formula}.",
+    "pt": "^, A linha anterior deve ser a regra |F com a fórmula {formula}."
+  },
+  "ERROR_INVALID_FALSE_IMPLICATION_NEXT": {
+    "en": "^, The next line should be the rule ->F with the formula {formula}.",
+    "pt": "^, A próxima linha deve ser a regra ->F com a fórmula {formula}."
+  },
+  "ERROR_INVALID_FALSE_IMPLICATION_PREVIOUS": {
+    "en": "^, The previous line should be the rule ->F with the formula {formula}.",
+    "pt": "^, A linha anterior deve ser a regra ->F com a fórmula {formula}."
+  },
+  "ERROR_INVALID_TRUE_DISJUNCTION_NEXT": {
+    "en": "^, There should be a next branch, starting with rule |T with formula {formula}.",
+    "pt": "^, Deve haver um próximo ramo, começando com a regra |T com a fórmula {formula}."
+  },
+  "ERROR_INVALID_TRUE_DISJUNCTION_PREVIOUS": {
+    "en": "^, There should be a previous branch, starting with the rule |T with the formula {formula}.",
+    "pt": "^, Deve haver um ramo anterior, começando com a regra |T com a fórmula {formula}."
+  },
+  "ERROR_INVALID_TRUE_IMPLICATION_NEXT": {
+    "en": "^, There should be a next branch, starting with rule ->T with formula {formula}.",
+    "pt": "^, Deve haver um próximo ramo, começando com a regra ->T com a fórmula {formula}."
+  },
+  "ERROR_INVALID_TRUE_IMPLICATION_PREVIOUS": {
+    "en": "^, There should be a previous branch, starting with the rule ->T with the formula {formula}.",
+    "pt": "^, Deve haver um ramo anterior, começando com a regra ->T com a fórmula {formula}."
+  },
+  "ERROR_INVALID_FALSE_CONJUNCTION_NEXT": {
+    "en": "^, There should be a next branch, starting with the rule &F with the formula {formula}.",
+    "pt": "^, Deve haver um próximo ramo, começando com a regra &F com a fórmula {formula}."
+  },
+  "ERROR_INVALID_FALSE_CONJUNCTION_PREVIOUS": {
+    "en": "^, There should be a previous branch, starting with the rule &F with the formula {formula}.",
+    "pt": "^, Deve haver um ramo anterior, começando com a regra &F com a fórmula {formula}."
+  },
+  "ERROR_INVALID_BETA_RULE": {
+    "en": "^, A beta rule must have exactly two branches.",
+    "pt": "^, Uma regra beta deve ter exatamente dois ramos."
+  },
+  "ERROR_ALREADY_USED_RULE_IN_BRANCH": {
+    "en": "^, The reference rule on the {line} line can only be used once in this branch.",
+    "pt": "^, A regra de referência na linha {line} só pode ser usada uma vez neste ramo."
+  },
+  "ERROR_PREMISSE_SHOULD_BE_TRUE": {
+    "en": "^, The premise must have a truth value T.",
+    "pt": "^, A premissa deve ter um valor-verdade T."
+  },
+  "ERROR_CONCLUSION_SHOULD_BE_FALSE": {
+    "en": "^, The conclusion must have a truth value F.",
+    "pt": "^, A conclusão deve ter um valor-verdade F."
+  },
+  "ERROR_RULE_CANNOT_BE_APPLIED": {
+    "en": "^, Cannot apply rule to an atom or predicate.",
+    "pt": "^, Não é possível aplicar regra a um átomo ou predicado."
+  },
+  "ERROR_RULE_MUST_BE_BETA": {
+    "en": "^, The rule must be a beta-rule.",
+    "pt": "^, A regra deve ser uma regra-beta."
+  },
+  "ERROR_RULE_MUST_BE_ALPHA": {
+    "en": "^, The rule must be a alpha-rule.",
+    "pt": "^, A regra deve ser uma regra-alfa."
+  },
+  "ERROR_WRONG_TRUE_VALUE_SHOULD_BE_T": {
+    "en": "^, The truth value should be T for this rule.",
+    "pt": "^, O valor-verdade deve ser T para esta regra."
+  },
+  "ERROR_WRONG_TRUE_VALUE_SHOULD_BE_F": {
+    "en": "^, The truth value should be F for this rule.",
+    "pt": "^, O valor-verdade deve ser F para esta regra."
+  },
+  "ERROR_NONE_PROOF_SUBMITTED": {
+    "en": "None proof was submitted.",
+    "pt": "Nenhuma demonstração foi enviada."
+  },
+  "ERROR_DEFINITION_NOT_COMPLETED": {
+    "en": "One of definitions are not completed. Please, check whether all rules are correctly written.\nRecall that a rule of inference starts with a numeber, followed by . (reference line), the truth value of the formula (T or F), has a formula and the justification (premise, conclusion or one of the inference rules with its formula references).",
+    "pt": "Uma das definições não está completa. Por favor, verifique se todas as regras estão escritas corretamente.\nLembre-se que uma regra de inferência começa com um número, seguido por . (linha de referência), o valor-verdade da fórmula (T ou F), tem uma fórmula e a justificativa (premissa, conclusão ou uma das regras de inferência com suas referências de fórmula)."
+  },
+  "ERROR_SINTAX_ERROR": {
+    "en": "Sintax error:\n",
+    "pt": "Erro de sintaxe:\n"
+  },
+  "ERROR_SYMBOL_NOT_IN_LANGUAGE": {
+    "en": " Symbol does not belongs to the language.",
+    "pt": " Símbolo não pertence à linguagem."
+  },
+  "ERROR_IN_LINE": {
+    "en": "Error in line {line}:\n",
+    "pt": "Erro na linha {line}:\n"
+  },
+  "CHECK_PROOF_VALID": {
+    "en": "The proof is valid.",
+    "pt": "A demonstração é válida."
+  },
+  "CHECK_PROOF_WRONG_THEOREM": {
+    "en": "Proof of {proof_theorem} is valid, but it is not {input_theorem}",
+    "pt": "A demonstração de {proof_theorem} é válida, mas não é {input_theorem}"
+  },
+  "CHECK_PROOF_NOT_VALID_THEOREM": {
+    "en": "The theorem is not valid.",
+    "pt": "O teorema não é válido."
+  },
+  "CHECK_PROOF_COUNTERMODELS": {
+    "en": "Countermodels:",
+    "pt": "Contra-exemplos:"
+  },
+  "CHECK_PROOF_NOT_COMPLETE": {
+    "en": "\nThe proof below is not complete.\n",
+    "pt": "\nA demonstração abaixo não está completa.\n"
+  },
+  "CHECK_PROOF_BRANCHES_NOT_SATURATED": {
+    "en": "The branches below are not saturated:",
+    "pt": "Os ramos abaixo não estão saturados:"
+  },
+  "CHECK_PROOF_BRANCH": {
+    "en": "Branch:",
+    "pt": "Ramo:"
+  },
+  "CHECK_PROOF_LATEX": {
+    "en": "Latex:",
+    "pt": "Latex:"
+  },
+  "CHECK_PROOF_COLORED_LATEX": {
+    "en": "Colored Latex:",
+    "pt": "Latex Colorido:"
+  },
+  "CHECK_PROOF_ERRORS_FOUND": {
+    "en": "The following errors were found:",
+    "pt": "Os seguintes erros foram encontrados:"
+  },
+  "CHECK_PROOF_NOT_VALID_THEOREM_INPUT": {
+    "en": "{theorem} is not a valid theorem!",
+    "pt": "{theorem} não é um teorema válido!"
+  },
+  "CHECK_PROOF_LATEX_THEOREM_NOT_VALID": {
+    "en": "Theorem ${theorem}$ is not valid.\n",
+    "pt": "O teorema ${theorem}$ não é válido.\n"
+  },
+  "ERROR_NONE_FORMULA_SUBMITTED": {
+    "en": "None formula was submitted.",
+    "pt": "Nenhuma fórmula foi enviada."
+  },
+  "ERROR_FORMULA_DEFINITION_NOT_CORRECT": {
+    "en": "The formula definition is not correct, check that all rules were applied correctly.\n Remember that a formula is defined by the following BNF:\nF :== P | ~ P | Q&A | P | Q | P -> Q | P <-> Q | (P), where P,Q are atoms",
+    "pt": "A definição da fórmula não está correta, verifique se todas as regras foram aplicadas corretamente.\n Lembre-se que uma fórmula é definida pela seguinte BNF:\nF :== P | ~ P | Q&A | P | Q | P -> Q | P <-> Q | (P), onde P,Q são átomos"
+  },
+  "ERROR_SYMBOL_NOT_BELONG_LANGUAGE": {
+    "en": " Symbol does not belong to language.",
+    "pt": " Símbolo não pertence à linguagem."
+  },
+  "ERROR_SYNTAX_ERROR_IN_LINE": {
+    "en": "Syntax error in line {line}:\n",
+    "pt": "Erro de sintaxe na linha {line}:\n"
+  },
+  "ERROR_THEOREM_DEFINITION_NOT_CORRECT": {
+    "en": "The formula definition is not correct, check that all rules were applied correctly.\n Remember that a formula is defined by the following BNF:\nF :== P | ~ P | Q&A | P | Q | P -> Q | P <-> Q | (P), where P,Q are atoms",
+    "pt": "A definição da fórmula não está correta, verifique se todas as regras foram aplicadas corretamente.\n Lembre-se que uma fórmula é definida pela seguinte BNF:\nF :== P | ~ P | Q&A | P | Q | P -> Q | P <-> Q | (P), onde P,Q são átomos"
+  }
+}
