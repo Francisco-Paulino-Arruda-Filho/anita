@@ -1,15 +1,4 @@
-import json
-import os
-
-STRINGS_PATH = os.path.join(os.path.dirname(__file__), 'anita_pt_gui_strings.json')
-with open(STRINGS_PATH, encoding='utf-8') as f:
-    PT_STRINGS = json.load(f)
-
-
-def t(key):
-    return PT_STRINGS.get(key, key)
-
-
+from anita.i18n import t
 import ipywidgets as widgets
 from IPython.display import display, Markdown, HTML
 import traceback
