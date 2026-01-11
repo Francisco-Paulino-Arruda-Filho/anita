@@ -585,5 +585,13 @@
   "FILE_OUTPUT_ERRORS_FOUND": {
     "en": "The following errors were found:\n\n",
     "pt": "Os seguintes erros foram encontrados:\n\n"
+  },
+  "PREMISE_CONCLUSION": {
+    "en": "conclusion",
+    "pt": "conclusao"
+  },
+  "PREMISE_CLOSED": {
+    "en": "closed",
+    "pt": "fechado"
   }
 }

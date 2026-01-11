@@ -1,4 +1,5 @@
 from rply import LexerGenerator
+from anita.i18n import t
 
 
 class Lexer():
@@ -60,8 +61,8 @@ class Lexer():
 
         #justification
         self.lexer.add('PREMISSE', r'pre')
-        self.lexer.add('CONCLUSION', r'conclusao')
-        self.lexer.add('CLOSED', r'fechado')
+        self.lexer.add('CONCLUSION', t('PREMISE_CONCLUSION'))
+        self.lexer.add('CLOSED', t('PREMISE_CLOSED'))
 
         #Variable
         self.lexer.add('VAR', r'(?!pre)[a-z][a-z0-9]*')
