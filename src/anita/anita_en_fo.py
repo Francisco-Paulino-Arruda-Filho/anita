@@ -1,5 +1,6 @@
 import traceback
 from rply import LexerGenerator
+from .i18n import t
 
 ## File formula.py
 class BinaryFormula():
@@ -2289,20 +2290,20 @@ class ParserAnita():
             error = ''  
 
             if(productions == ['']):
-                error = 'None proof was submitted.'
+                error = t('ERROR_NONE_PROOF_SUBMITTED', 'en')
             if token.gettokentype() == '$end':
-                error = 'One of definitions are not completed. Please, check whether all rules are correctly written.\nRecall that a rule of inference starts with a numeber, followed by . (reference line), the truth value of the formula (T or F), has a formula and the justification (premise, conclusion or one of the inference rules with its formula references).'
+                error = t('ERROR_DEFINITION_NOT_COMPLETED', 'en')
             else:
                 source_position = token.getsourcepos()
-                error = 'One of definitions are not completed. Please, check whether all rules are correctly written.\nRecall that a rule of inference starts with a numeber, followed by . (reference line), the truth value of the formula (T or F), has a formula and the justification (premise, conclusion or one of the inference rules with its formula references).'
-                error += "Sintax error:\n"
+                error = t('ERROR_DEFINITION_NOT_COMPLETED', 'en')
+                error += t('ERROR_SINTAX_ERROR', 'en')
                 error += productions[source_position.lineno - 1]
                 string = '\n'
                 for i in range(source_position.colno -1):
                     string += ' '
                 string += '^'
                 if token.gettokentype() == 'OUT':
-                    string += ' Symbol does not belongs to the language.'
+                    string += t('ERROR_SYMBOL_NOT_IN_LANGUAGE', 'en')
                 error += string
                 
             raise ValueError("@@"+error)
@@ -2310,109 +2311,109 @@ class ParserAnita():
     def get_error(self, type_error, token_error, rule):
         productions = self.state.splitlines()
         column_error = token_error.getsourcepos().colno
-        erro = "Error in line {}:\n".format(token_error.getsourcepos().lineno)
+        erro = t('ERROR_IN_LINE', 'en').format(line=token_error.getsourcepos().lineno)
         erro += productions[token_error.getsourcepos().lineno-1] + "\n"
         for i in range(column_error-1):
             erro += ' '
         if type_error == constants.INVALID_INITIAL_TABLEAU:
-            erro += "^, The initial tableau should start with the premises followed by the conclusion. After the initial tableau, it is not allowed to add premises or conclusion."
+            erro += t('ERROR_INVALID_INITIAL_TABLEAU', 'en')
         elif type_error == constants.INVALID_RESULT:
-            erro += "^, Formula {} is not a valid result for this rule.".format(rule.formula.toString())
+            erro += t('ERROR_INVALID_RESULT', 'en').format(formula=rule.formula.toString())
         elif type_error == constants.UNEXPECT_RESULT:
-            erro += "^, Formula {} is not a valid result for this rule.".format(rule.formula.toString())
+            erro += t('ERROR_UNEXPECT_RESULT', 'en').format(formula=rule.formula.toString())
         elif type_error == constants.IS_NOT_DISJUNCTION_FALSE:
-            erro += "^, The formula referenced in line {} is not a signed formula F with a disjunction.".format(token_error.value)
+            erro += t('ERROR_IS_NOT_DISJUNCTION_FALSE', 'en').format(line=token_error.value)
         elif type_error == constants.IS_NOT_DISJUNCTION_TRUE:
-            erro += "^, The formula referenced in line {} is not a signed formula T with a disjunction.".format(token_error.value)
+            erro += t('ERROR_IS_NOT_DISJUNCTION_TRUE', 'en').format(line=token_error.value)
         elif type_error == constants.IS_NOT_CONJUNCTION_FALSE:
-            erro += "^, The formula referenced in line {} is not a signed formula F with a conjunction.".format(token_error.value)
+            erro += t('ERROR_IS_NOT_CONJUNCTION_FALSE', 'en').format(line=token_error.value)
         elif type_error == constants.IS_NOT_CONJUNCTION_TRUE:
-            erro += "^, The formula referenced in line {} is not a signed formula T with a conjunction.".format(token_error.value)
+            erro += t('ERROR_IS_NOT_CONJUNCTION_TRUE', 'en').format(line=token_error.value)
         elif type_error == constants.IS_NOT_NEGATION_FALSE:
-            erro += "^, The formula referenced in line {} is not a signed formula F with a negation.".format(token_error.value)
+            erro += t('ERROR_IS_NOT_NEGATION_FALSE', 'en').format(line=token_error.value)
         elif type_error == constants.IS_NOT_NEGATION_TRUE:
-            erro += "^, The formula referenced in line {} is not a signed formula T with a negation.".format(token_error.value)
+            erro += t('ERROR_IS_NOT_NEGATION_TRUE', 'en').format(line=token_error.value)
         elif type_error == constants.IS_NOT_IMPLICATION:
-            erro += "^,  The formula referenced in line {} is not a implication.".format(token_error.value)
+            erro += t('ERROR_IS_NOT_IMPLICATION', 'en').format(line=token_error.value)
         elif type_error == constants.INVALID_NEGATION:
-            erro += "^, None of the formulas referenced by the lines contradict the other formula."
+            erro += t('ERROR_INVALID_NEGATION', 'en')
         elif type_error == constants.INVALID_LEFT_IMPLICATION:
-            erro += "^, Formula {} (conclusion of the rule) must be the antecedent of the implication of the referenced formula with truth-value F.".format(rule.formula.toString())
+            erro += t('ERROR_INVALID_LEFT_IMPLICATION', 'en').format(formula=rule.formula.toString())
         elif type_error == constants.INVALID_RIGHT_IMPLICATION:
-            erro += "^, Formula {} (conclusion of the rule) must be the consequent of the implication of the referenced formula with truth-value T.".format(rule.formula.toString())
+            erro += t('ERROR_INVALID_RIGHT_IMPLICATION', 'en').format(formula=rule.formula.toString())
         elif type_error == constants.INVALID_LEFT_RIGHT_IMPLICATION:
-            erro += "^, Formula {} (conclusion of the rule) must be the antecedent or consequent of the implication of the referenced formula.".format(rule.formula.toString())
+            erro += t('ERROR_INVALID_LEFT_RIGHT_IMPLICATION', 'en').format(formula=rule.formula.toString())
         elif type_error == constants.INVALID_LEFT_CONJUNCTION:
-            erro += "^, Formula on the left formula of the conclusion is not proof by any of the lines referenced in this rule."
+            erro += t('ERROR_INVALID_LEFT_CONJUNCTION', 'en')
         elif type_error == constants.INVALID_RIGHT_CONJUNCTION:
-            erro += "^, Formula on the right formula of the conclusion is not proof by any of the lines referenced in this rule."
+            erro += t('ERROR_INVALID_RIGHT_CONJUNCTION', 'en')
         elif type_error == constants.INVALID_LEFT_OR_RIGHT_DISJUNCTION:
-            erro += "^, Formula to the right or left of the conclusion formula must be the same as the formula reference in line {}.".format(token_error.value)
+            erro += t('ERROR_INVALID_LEFT_OR_RIGHT_DISJUNCTION', 'en').format(line=token_error.value)
         elif type_error == constants.INVALID_LEFT_OR_RIGHT_CONJUNCTION:
-            erro += "^, Formula {} (conclusion of rule) must be the same as the right or left formula of line {}.".format(rule.formula.toString(),token_error.value)
+            erro += t('ERROR_INVALID_LEFT_OR_RIGHT_CONJUNCTION', 'en').format(formula=rule.formula.toString(), line=token_error.value)
         elif type_error == constants.USING_DESCARTED_RULE:
-            erro += "^, The reference to the line formula {} cannot be used, as this formula does not belong to this branch.".format(token_error.value)
+            erro += t('ERROR_USING_DESCARTED_RULE', 'en').format(line=token_error.value)
         elif type_error == constants.REFERENCED_LINE_NOT_DEFINED:
-            erro += "^, The reference to the line formula {} cannot be used, as all references must occur before this rule.".format(token_error.value)
+            erro += t('ERROR_REFERENCED_LINE_NOT_DEFINED', 'en').format(line=token_error.value)
         elif type_error == constants.CLOSE_BRACKET_WITHOUT_BOX:
-            erro += "^, Closing branches without an open branch."
+            erro += t('ERROR_CLOSE_BRACKET_WITHOUT_BOX', 'en')
         elif type_error == constants.BOX_MUST_BE_DISPOSED:
-            erro += "^,The open branch must be closed."
+            erro += t('ERROR_BOX_MUST_BE_DISPOSED', 'en')
         elif type_error == constants.BOX_MUST_BE_DISPOSED_BY_RULE:
-            erro += "^, This branch must be closed after applying at least one rule."
+            erro += t('ERROR_BOX_MUST_BE_DISPOSED_BY_RULE', 'en')
         elif type_error == constants.INVALID_SUBSTITUTION_UNIVERSAL:
-            erro += "^, Formula {} is not a valid substitution for the universal formula referenced in line {}.".format(rule.formula.toString(), rule.reference1)
+            erro += t('ERROR_INVALID_SUBSTITUTION_UNIVERSAL', 'en').format(formula=rule.formula.toString(), line=rule.reference1)
         elif type_error == constants.INVALID_UNIVERSAL_FORMULA:
-            erro += "^, Formula referenced in line {} is not a universal formula with truth-value {}.".format(rule.reference1, rule.true_value)
+            erro += t('ERROR_INVALID_UNIVERSAL_FORMULA', 'en').format(line=rule.reference1, value=rule.true_value)
         elif type_error == constants.INVALID_EXISTENCIAL_FORMULA:
-            erro += "^, Formula referenced in line {} is not a existential formula with truth-value {}.".format(rule.reference1, rule.true_value)
+            erro += t('ERROR_INVALID_EXISTENCIAL_FORMULA', 'en').format(line=rule.reference1, value=rule.true_value)
         elif type_error == constants.INVALID_SUBSTITUTION_EXISTENCIAL:
-            erro += "^, Formula {} is not a valid substitutuion for the existential formula referenced in the line {}.".format(rule.formula.toString(), rule.reference1)
+            erro += t('ERROR_INVALID_SUBSTITUTION_EXISTENCIAL', 'en').format(formula=rule.formula.toString(), line=rule.reference1)
         elif type_error == constants.VARIABLE_IS_NOT_FRESH_VARIABLE:
-            erro += "^, The variable used in this formula {} is not a new variable and therefore cannot be used in this rule.".format(rule.formula.toString())
+            erro += t('ERROR_VARIABLE_IS_NOT_FRESH_VARIABLE', 'en').format(formula=rule.formula.toString())
         elif type_error == constants.INVALID_TRUE_CONJUNCTION_NEXT:
-            erro += "^, The next line should be the &T rule with the formula {}.".format(rule.formula.right.toString())
+            erro += t('ERROR_INVALID_TRUE_CONJUNCTION_NEXT', 'en').format(formula=rule.formula.right.toString())
         elif type_error == constants.INVALID_TRUE_CONJUNCTION_PREVIOUS:
-            erro += "^, The previous line should be the &T rule with the formula {}.".format(rule.formula.left.toString())
+            erro += t('ERROR_INVALID_TRUE_CONJUNCTION_PREVIOUS', 'en').format(formula=rule.formula.left.toString())
         elif type_error == constants.INVALID_FALSE_DISJUNCTION_NEXT:
-            erro += "^, The next line should be the rule |F with the formula {}.".format(rule.formula.right.toString())
+            erro += t('ERROR_INVALID_FALSE_DISJUNCTION_NEXT', 'en').format(formula=rule.formula.right.toString())
         elif type_error == constants.INVALID_FALSE_DISJUNCTION_PREVIOUS:
-            erro += "^, The previous line should be the |F rule with the formula {}.".format(rule.formula.left.toString())
+            erro += t('ERROR_INVALID_FALSE_DISJUNCTION_PREVIOUS', 'en').format(formula=rule.formula.left.toString())
         elif type_error == constants.INVALID_FALSE_IMPLICATION_NEXT:
-            erro += "^, The next line should be the rule ->F with the formula {}.".format(rule.formula.right.toString())
+            erro += t('ERROR_INVALID_FALSE_IMPLICATION_NEXT', 'en').format(formula=rule.formula.right.toString())
         elif type_error == constants.INVALID_FALSE_IMPLICATION_PREVIOUS:
-            erro += "^, The previous line should be the rule ->F with the formula {}.".format(rule.formula.left.toString())
+            erro += t('ERROR_INVALID_FALSE_IMPLICATION_PREVIOUS', 'en').format(formula=rule.formula.left.toString())
         elif type_error == constants.INVALID_TRUE_DISJUNCTION_NEXT:
-            erro += "^, There should be a next branch, starting with rule |T with formula {}.".format(rule.formula.right.toString())
+            erro += t('ERROR_INVALID_TRUE_DISJUNCTION_NEXT', 'en').format(formula=rule.formula.right.toString())
         elif type_error == constants.INVALID_TRUE_DISJUNCTION_PREVIOUS:
-            erro += "^, There should be a previous branch, starting with the rule |T with the formula {}.".format(rule.formula.left.toString())
+            erro += t('ERROR_INVALID_TRUE_DISJUNCTION_PREVIOUS', 'en').format(formula=rule.formula.left.toString())
         elif type_error == constants.INVALID_TRUE_IMPLICATION_NEXT:
-            erro += "^, There should be a next branch, starting with rule ->T with formula {}.".format(rule.formula.right.toString())
+            erro += t('ERROR_INVALID_TRUE_IMPLICATION_NEXT', 'en').format(formula=rule.formula.right.toString())
         elif type_error == constants.INVALID_TRUE_IMPLICATION_PREVIOUS:
-            erro += "^, There should be a previous branch, starting with the rule ->T with the formula {}.".format(rule.formula.left.toString())
+            erro += t('ERROR_INVALID_TRUE_IMPLICATION_PREVIOUS', 'en').format(formula=rule.formula.left.toString())
         elif type_error == constants.INVALID_FALSE_CONJUNCTION_NEXT:
-            erro += "^, There should be a next branch, starting with the rule &F with the formula {}.".format(rule.formula.right.toString())
+            erro += t('ERROR_INVALID_FALSE_CONJUNCTION_NEXT', 'en').format(formula=rule.formula.right.toString())
         elif type_error == constants.INVALID_FALSE_CONJUNCTION_PREVIOUS:
-            erro += "^, There should be a previous branch, starting with the rule &F with the formula {}.".format(rule.formula.left.toString())
+            erro += t('ERROR_INVALID_FALSE_CONJUNCTION_PREVIOUS', 'en').format(formula=rule.formula.left.toString())
         elif type_error == constants.INVALID_BETA_RULE:
-            erro += "^, A beta rule must have exactly two branches."
+            erro += t('ERROR_INVALID_BETA_RULE', 'en')
         elif type_error == constants.ALREADY_USED_RULE_IN_BRANCH:
-            erro += "^, The reference rule on the {} line can only be used once in this branch.".format(rule.line)
+            erro += t('ERROR_ALREADY_USED_RULE_IN_BRANCH', 'en').format(line=rule.line)
         elif type_error == constants.PREMISSE_SHOULD_BE_TRUE:
-            erro += "^, The premise must have a truth value T."
+            erro += t('ERROR_PREMISSE_SHOULD_BE_TRUE', 'en')
         elif type_error == constants.CONCLUSION_SHOULD_BE_FALSE:
-            erro += "^, The conclusion must have a truth value F."
+            erro += t('ERROR_CONCLUSION_SHOULD_BE_FALSE', 'en')
         elif type_error == constants.RULE_CANNOT_BE_APPLIED:
-            erro += "^, Cannot apply rule to an atom or predicate."
+            erro += t('ERROR_RULE_CANNOT_BE_APPLIED', 'en')
         elif type_error == constants.RULE_MUST_BE_BETA:
-            erro += "^, The rule must be a beta-rule."
+            erro += t('ERROR_RULE_MUST_BE_BETA', 'en')
         elif type_error == constants.RULE_MUST_BE_ALPHA:
-            erro += "^, The rule must be a alpha-rule."
+            erro += t('ERROR_RULE_MUST_BE_ALPHA', 'en')
         elif type_error == constants.WRONG_TRUE_VALUE:
             if rule.token_true_value.gettokentype() == 'FALSE':  
-              erro += "^, The truth value should be T for this rule."
+              erro += t('ERROR_WRONG_TRUE_VALUE_SHOULD_BE_T', 'en')
             else:
-              erro += "^, The truth value should be F for this rule."
+              erro += t('ERROR_WRONG_TRUE_VALUE_SHOULD_BE_F', 'en')
 
         return erro
     
@@ -2458,60 +2459,60 @@ def check_proof(input_proof, input_theorem=None, display_theorem=True, display_c
         if input_theorem!=None: 
           premisses, conclusion = ParserTheorem.getTheorem(input_theorem)
           if conclusion == None:
-            return f'{input_theorem} is not a valid theorem!'
+            return t('CHECK_PROOF_NOT_VALID_THEOREM_INPUT', 'en').format(theorem=input_theorem)
           set_premisses = set([p.toString() for p in premisses])
 
         if(result.is_closed):
           if(conclusion==None or (conclusion==result.conclusion and set_premisses==set_premisses_result)):
-            r += "The proof is valid."
+            r += t('CHECK_PROOF_VALID', 'en')
             if display_theorem:
               r += "\n"+s_theorem
           else:
-            r += f"Proof of {s_theorem} is valid, but it is not {input_theorem}"                   
+            r += t('CHECK_PROOF_WRONG_THEOREM', 'en').format(proof_theorem=s_theorem, input_theorem=input_theorem)
 
           if display_latex: 
-            r += "\nLatex:\n"+str(result.latex)
-            r += "\nColored Latex:\n"+str(result.colored_latex)
+            r += "\n"+t('CHECK_PROOF_LATEX', 'en')+"\n"+str(result.latex)
+            r += "\n"+t('CHECK_PROOF_COLORED_LATEX', 'en')+"\n"+str(result.colored_latex)
         else:
             if result.saturared_branches != []:
               if(conclusion==None or (conclusion==result.conclusion and set_premisses==set_premisses_result)):
-                r += "The theorem is not valid."
+                r += t('CHECK_PROOF_NOT_VALID_THEOREM', 'en')
                 if display_theorem:
                   r += "\n"+result.theorem 
               if display_countermodel:
-                r += "\nCountermodels:"
+                r += "\n"+t('CHECK_PROOF_COUNTERMODELS', 'en')
                 for s_v in result.counter_examples:
                     r += '\n  '+s_v
 #                r += "\n"+str(result.latex)
               if display_latex: 
-                r += "\nLatex:\nTheorem ${}$ is not valid.\n".format(result.latex_theorem)
+                r += "\n"+t('CHECK_PROOF_LATEX', 'en')+"\n"+t('CHECK_PROOF_LATEX_THEOREM_NOT_VALID', 'en').format(theorem=result.latex_theorem)
                 if display_countermodel:
-                  r += "\nCountermodels:"
+                  r += "\n"+t('CHECK_PROOF_COUNTERMODELS', 'en')
                   r += "\n\\begin{itemize}"
                   for s_v in result.counter_examples:
                       r += '\n  \item $'+s_v+'$'
                   r += "\n\end{itemize}"
                 r += "\n"+str(result.colored_latex)
             else: 
-                r += "\nThe proof below is not complete.\n"
+                r += t('CHECK_PROOF_NOT_COMPLETE', 'en')
                 if display_theorem:
                   r += result.theorem
-                r += "\nThe branches below are not saturated:"
+                r += "\n"+t('CHECK_PROOF_BRANCHES_NOT_SATURATED', 'en')
                 for rules in result.open_branches:
-                  r += "\nBranch:\n  "
+                  r += "\n"+t('CHECK_PROOF_BRANCH', 'en')+"\n  "
                   r += '\n  '.join([r.toString() for r in reversed(rules)])
                 if display_latex: 
-                  r += "\nLatex:\n"+str(result.latex)
-                  r += "\nColored Latex:\n"+str(result.colored_latex)
+                  r += "\n"+t('CHECK_PROOF_LATEX', 'en')+"\n"+str(result.latex)
+                  r += "\n"+t('CHECK_PROOF_COLORED_LATEX', 'en')+"\n"+str(result.colored_latex)
       else:
-        r += "The following errors were found:\n"
+        r += t('CHECK_PROOF_ERRORS_FOUND', 'en')+"\n"
         for error in result.errors:
           r += '\n'+str(error)
       return r
   except ValueError:
       s = traceback.format_exc()
       result = (s.split("@@"))[-1]
-      r = "The following errors were found:\n\n"
+      r = t('CHECK_PROOF_ERRORS_FOUND', 'en')+"\n\n"
       r += result
       return r
   else:
@@ -2628,20 +2629,20 @@ class ParserTheorem():
             error = ''  
 
             if(productions == ['']):
-                error = 'None formula was submitted.'
+                error = t('ERROR_NONE_FORMULA_SUBMITTED', 'en')
             if token.gettokentype() == '$end':
-                error = 'None formula was submitted.'
+                error = t('ERROR_NONE_FORMULA_SUBMITTED', 'en')
             else:
                 source_position = token.getsourcepos()
-                error = 'The formula definition is not correct, check that all rules were applied correctly.\n Remember that a formula is defined by the following BNF:\nF :== P | ~ P | Q&A | P | Q | P -> Q | P <-> Q | (P), where P,Q are atoms'
-                error += "Sintax error:\n"
+                error = t('ERROR_THEOREM_DEFINITION_NOT_CORRECT', 'en')
+                error += t('ERROR_SINTAX_ERROR', 'en')
                 error += productions[source_position.lineno - 1]
                 string = '\n'
                 for i in range(source_position.colno -1):
                     string += ' '
                 string += '^'
                 if token.gettokentype() == 'OUT':
-                    string += ' Symbol does not belong to language.'
+                    string += t('ERROR_SYMBOL_NOT_BELONG_LANGUAGE', 'en')
                 error += string
                 
             raise ValueError("@@"+error)
@@ -2649,7 +2650,7 @@ class ParserTheorem():
     def get_error(self, type_error, token_error, rule):
         productions = self.state.splitlines()
         column_error = token_error.getsourcepos().colno
-        erro = "Syntax error in line {}:\n".format(token_error.getsourcepos().lineno)
+        erro = t('ERROR_SYNTAX_ERROR_IN_LINE', 'en').format(line=token_error.getsourcepos().lineno)
         erro += productions[token_error.getsourcepos().lineno-1] + "\n"
         for i in range(column_error-1):
             erro += ' '
@@ -2790,20 +2791,20 @@ class ParserFormula():
             error = ''  
 
             if(productions == ['']):
-                error = 'None formula was submitted.'
+                error = t('ERROR_NONE_FORMULA_SUBMITTED', 'en')
             if token.gettokentype() == '$end':
-                error = 'None formula was submitted.'
+                error = t('ERROR_NONE_FORMULA_SUBMITTED', 'en')
             else:
                 source_position = token.getsourcepos()
-                error = 'The formula definition is not correct, check that all rules were applied correctly.\nRemember that a formula is defined by the following BNF:\nF :== P | ~ P | Q&A | P | Q | P -> Q | P <-> Q | (P), where P,Q are atoms.\n'
-                error += "Sintax error:\n"
+                error = t('ERROR_FORMULA_DEFINITION_NOT_CORRECT', 'en')
+                error += t('ERROR_SINTAX_ERROR', 'en')
                 error += productions[source_position.lineno - 1]
                 string = '\n'
                 for i in range(source_position.colno -1):
                     string += ' '
                 string += '^'
                 if token.gettokentype() == 'OUT':
-                    string += ' Symbol does not belong to the language.'
+                    string += t('ERROR_SYMBOL_NOT_BELONG_LANGUAGE', 'en')
                 error += string
                 
             raise ValueError("@@"+error)
@@ -2811,7 +2812,7 @@ class ParserFormula():
     def get_error(self, type_error, token_error, rule):
         productions = self.state.splitlines()
         column_error = token_error.getsourcepos().colno
-        erro = "Syntax error in line {}:\n".format(token_error.getsourcepos().lineno)
+        erro = t('ERROR_SYNTAX_ERROR_IN_LINE', 'en').format(line=token_error.getsourcepos().lineno)
         erro += productions[token_error.getsourcepos().lineno-1] + "\n"
         for i in range(column_error-1):
             erro += ' '
