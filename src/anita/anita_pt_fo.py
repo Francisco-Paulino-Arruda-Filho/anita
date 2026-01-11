@@ -33,16 +33,13 @@ from anita.lexer.lexer import Lexer
 from anita.constants.constants import constants
 from anita.utils.symbol_table import SymbolTable
 from anita.utils.tableau_deduction_return import tableau_deduction_return
+from anita.utils.value_error_handle import value_error_handle
 
 ## File analisys.py
 
 deduction_result = tableau_deduction_return()
 
-def value_error_handle(exctype, value, tb):
-    deduction_result.add_error(str(value))
-    deduction_result.to_json()
-
-sys.excepthook = value_error_handle
+sys.excepthook = lambda exctype, value, tb: value_error_handle(exctype, value, tb, deduction_result)
 
 class ParserAnita():
     def __init__(self, state):
