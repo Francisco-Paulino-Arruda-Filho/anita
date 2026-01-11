@@ -100,16 +100,16 @@ anita -i [input_file]
 ```
 - Jupyter Nootebook with
 ```bash
-from anita.anita_pt_gui import anita
+from anita.anita_gui import anita
 anita()
 ```
 - Voilà with
 ```bash
-voila anita_pt.ipynb
+voila anita.ipynb
 ```
 - You can import ANITA in your code (basic usage)
 ```bash
-from anita.anita_pt_fo import check_proof
+from anita.anita_fo import check_proof
 
 print(check_proof('''1. T A|B		pre
 2. T A->C		pre

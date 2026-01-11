@@ -21,6 +21,7 @@ setup(
     install_requires=[
         'rply',
         'ipywidgets',
+        'dotenv',
       ],
     entry_points={'console_scripts': ['anita=anita.__main__:main', ], },    
 

@@ -1,0 +1,15 @@
+{
+   "colored_latex": "",
+   "conclusion": null,
+   "counter_examples": null,
+   "errors": [
+      "type object 'ParserAnita' has no attribute 'getProof'"
+   ],
+   "is_closed": [
+      false
+   ],
+   "latex": "",
+   "latex_theorem": "",
+   "premisses": [],
+   "theorem": ""
+}

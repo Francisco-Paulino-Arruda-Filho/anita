@@ -1,1 +1,5 @@
 *.zip
+anita.egg-info
+__pycache__
+.venv
+.env
