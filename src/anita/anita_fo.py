@@ -3,7 +3,7 @@ from rply import ParserGenerator
 from rply import Token
 import sys
 
-from anita.i18n import t
+from anita.utils.i18n import t
 from anita.rules.RuleFactory import RuleFactory, RuleType
 from anita.rules.AndFalseRule import AndFalseRule
 from anita.rules.AndTrueRule import AndTrueRule
