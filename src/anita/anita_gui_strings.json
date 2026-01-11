@@ -1,0 +1,263 @@
+{
+  "BTN_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "ANITA_INPUT_PROOF_PLACEHOLDER": {"en": "Enter your proof", "pt": "Digite sua demonstração"},
+  "CHECKBOX_SHOW_LATEX": {"en": "Display LaTeX", "pt": "Exibir Latex"},
+
+  "ANITA_CONSIDER_ASSUMPTIONS_TITLE": {"pt": "<b>Considere as seguintes afirmações:</b>"},
+  "ANITA_CONSIDER_CONCLUSION_TEXT": {"pt": "<b>Considere a afirmação abaixo segue logicamente das afirmações acima:"},
+  "ANITA_REPRESENT_AND_PROVE_TEXT": {"pt": "### Represente as afirmações acima em lógica e digite sua demonstração em Tableau Analítico:"},
+  "ANITA_REPRESENT_FORMULAS_HEADER": {"pt": "# Representamos as afirmações através das seguintes fórmulas:"},
+  "ANITA_REPRESENT_FOR": {"pt": "para"},
+  "ANITA_SHOW_VALID_REASONING": {"pt": "# Assim, devemos demonstrar que o raciocínio abaixo é válido:"},
+
+  "ANITA_TYPE_PROOF_TITLE": {
+    "en": "<h3>Enter your proof in Analytic Tableau:</h3>",
+    "pt": "### Digite sua demonstração em Tableau Analítico:"
+  },
+  "ANITA_PROOF_CORRECT": {
+    "en": "<font color=\"blue\">Congratulations! The proof of {theorem} is valid.</font>",
+    "pt": "<font color=\"blue\">Parabéns! A demonstração de {theorem} está correta.</font>"
+  },
+  "ANITA_THEOREM_NOT_VALID": {
+    "en": "<font color=\"blue\">Theorem {theorem} is not valid.</font>",
+    "pt": "<font color=\"blue\">O teorema {theorem} não é válido.</font>"
+  },
+  "ANITA_COUNTEREXAMPLES_LABEL": {
+    "en": "Countermodels:",
+    "pt": "São contra-exemplos:"
+  },
+  "ANITA_PROOF_INCOMPLETE": {
+    "en": "<font color=\"red\">The proof of {theorem} is not complete.</font>",
+    "pt": "<font color=\"red\">A demonstração de {theorem} não está completa.</font>"
+  },
+  "ANITA_UNSATURATED_BRANCHES_LABEL": {
+    "en": "The branches below are not saturated:",
+    "pt": "Os ramos abaixo não estão saturados:"
+  },
+  "ANITA_BRANCH_LABEL": {"en": "Branch:", "pt": "Ramo:"},
+  "ANITA_LATEX_CODE_LABEL": {"en": "LaTeX Code:", "pt": "Código Latex:"},
+  "ANITA_PROOF_ERRORS_TITLE": {
+    "en": "<font color=\"red\">The proof is not correct:</font>",
+    "pt": "<font color=\"red\">Sua demonstração contém os seguintes erros:</font>"
+  },
+
+  "ANITA_THEOREM_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "ANITA_THEOREM_INPUT_PLACEHOLDER": {"en": "Enter your proof:", "pt": "Digite sua demonstração:"},
+  "ANITA_THEOREM_INVALID": {
+    "en": "<font color=\"red\">Theorem {theorem} is not valid.</font>",
+    "pt": "<font color=\"red\">{theorem} não é um teorema válido!</font>"
+  },
+  "ANITA_THEOREM_CHECKBOX_LATEX": {"en": "Display LaTeX", "pt": "Exibir Latex"},
+  "ANITA_THEOREM_TITLE": {
+    "en": "<h3>Enter the proof of {theorem} in Analytic Tableau:</h3>",
+    "pt": "Digite a demonstração de {theorem} em Tableau Analítico:"
+  },
+  "ANITA_THEOREM_CORRECT": {
+    "en": "<font color=\"blue\">Congratulations! The proof of {theorem} is valid.</font>",
+    "pt": "<font color=\"blue\">Parabéns! A demonstração de {theorem} está correta.</font>"
+  },
+  "ANITA_THEOREM_NOT_VALID_2": {
+    "en": "<font color=\"blue\">Theorem {theorem} is not valid.</font>",
+    "pt": "<font color=\"blue\">O teorema {theorem} não é válido.</font>"
+  },
+  "ANITA_THEOREM_COUNTEREXAMPLES_LABEL": {
+    "en": "Countermodels:",
+    "pt": "São contra-exemplos:"
+  },
+  "ANITA_THEOREM_INCOMPLETE": {
+    "en": "<font color=\"red\">The proof of {theorem} is not complete.</font>",
+    "pt": "<font color=\"red\">A demonstração de {theorem} não está completa.</font>"
+  },
+  "ANITA_THEOREM_UNSATURATED_BRANCHES_LABEL": {
+    "en": "The branches below are not saturated:",
+    "pt": "Os ramos abaixo não estão saturados:"
+  },
+  "ANITA_THEOREM_BRANCH_LABEL": {"en": "Branch:", "pt": "Ramo:"},
+  "ANITA_THEOREM_LATEX_CODE_LABEL": {"en": "LaTeX Code:", "pt": "Código Latex:"},
+  "ANITA_THEOREM_ERRORS_TITLE": {
+    "en": "<font color=\"red\">The proof is not correct:</font>",
+    "pt": "<font color=\"red\">Sua demonstração contém os seguintes erros:</font>"
+  },
+  "ANITA_THEOREM_WRONG_PROOF": {
+    "en": "<font color=\"red\">Proof of {theorem} is valid, but it is not {input_theorem}!</font>",
+    "pt": "<font color=\"red\">Sua demostração de {theorem} é válida, mas é diferente da demonstração solicitada {input_theorem}!</font>"
+  },
+
+  "SUBSTITUTABLE_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "SUBSTITUTABLE_OPTIONS_YES": {"en": "Yes", "pt": "Sim"},
+  "SUBSTITUTABLE_OPTIONS_NO": {"en": "No", "pt": "Não"},
+  "SUBSTITUTABLE_ANSWER_LABEL": {"en": "Answer:", "pt": "Resposta:"},
+  "SUBSTITUTABLE_QUESTION": {
+    "en": "The variable {var} is substitutable by the term {term} in the formula {formula}:",
+    "pt": "A variável {var} é substituível pelo termo {term} na fórmula {formula}:"
+  },
+  "SUBSTITUTABLE_RIGHT_ANSWER": {
+    "en": "<font color=\"blue\">Congratulations you got the question right!</font>",
+    "pt": "<font color=\"blue\">Parabéns você acertou a questão!</font>"
+  },
+  "SUBSTITUTABLE_RIGHT_ANSWER_IS": {
+    "en": "The variable {var} is substitutable by the term {term} in the formula {formula}.",
+    "pt": "A variável {var} é substituível pelo termo {term} na fórmula {formula}."
+  },
+  "SUBSTITUTABLE_RIGHT_ANSWER_IS_NOT": {
+    "en": "The variable {var} is not substitutable by the term {term} in the formula {formula}.",
+    "pt": "A variável {var} não é substituível pelo termo {term} na fórmula {formula}."
+  },
+  "SUBSTITUTABLE_WRONG_ANSWER": {
+    "en": "<font color=\"red\">Unfortunately, you got the question wrong.</font>",
+    "pt": "<font color=\"red\">Infelizmente, você errou a questão.</font>"
+  },
+  "SUBSTITUTABLE_INVALID_FORMULA": {
+    "en": "<font color=\"red\">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>",
+    "pt": "<font color=\"red\">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>"
+  },
+
+  "VERIFY_VARIABLES_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_VARIABLES_PLACEHOLDER": {
+    "en": "Enter the variables separated by ; (semicolon)",
+    "pt": "Digite as variáveis separadas por ;"
+  },
+  "VERIFY_VARIABLES_PROMPT": {
+    "en": "Enter the set of variables of the formula {formula}:",
+    "pt": "Digite o conjunto de variáve\nis da fórmula {formula}:"
+  },
+  "VERIFY_VARIABLES_HINT": {
+    "en": "Each element of your set must be separated by ; (semicolon)",
+    "pt": "Cada elemento do seu conjunto deve ser separado por ; (ponto-e-vírgula)"
+  },
+  "VERIFY_VARIABLES_RIGHT_ANSWER": {
+    "en": "<font color=\"blue\">Congratulations, you got the question right!</font>",
+    "pt": "<font color=\"blue\">Parabéns você acertou a questão.</font>"
+  },
+  "VERIFY_VARIABLES_WRONG_ANSWER": {
+    "en": "<font color=\"red\">Unfortunately, you got the question wrong.</font>",
+    "pt": "<font color=\"red\">Você errou a questão.</font>"
+  },
+  "VERIFY_VARIABLES_INVALID_FORMULA": {
+    "en": "<font color=\"red\">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>",
+    "pt": "<font color=\"red\">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>"
+  },
+
+  "VERIFY_FREE_VARIABLES_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_FREE_VARIABLES_PLACEHOLDER": {
+    "en": "Enter the variables separated by ; (semicolon)",
+    "pt": "Digite as variáveis separadas por ;"
+  },
+  "VERIFY_FREE_VARIABLES_PROMPT": {
+    "en": "Enter the set of the free variables of the formula {formula}:",
+    "pt": "Digite o conjunto de variáve\nis livres da fórmula {formula}:"
+  },
+  "VERIFY_FREE_VARIABLES_HINT": {
+    "en": "Each element of your set must be separated by ; (semicolon)",
+    "pt": "Cada elemento do seu conjunto deve ser separado por ; (ponto-e-vírgula)"
+  },
+  "VERIFY_FREE_VARIABLES_RIGHT_ANSWER": {
+    "en": "<font color=\"blue\">Congratulations, you got the question right!</font>",
+    "pt": "<font color=\"blue\">Parabéns você acertou a questão.</font>"
+  },
+  "VERIFY_FREE_VARIABLES_WRONG_ANSWER": {
+    "en": "<font color=\"red\">Unfortunately, you got the question wrong.</font>",
+    "pt": "<font color=\"red\">Você errou a questão.</font>"
+  },
+  "VERIFY_FREE_VARIABLES_INVALID_FORMULA": {
+    "en": "<font color=\"red\">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>",
+    "pt": "<font color=\"red\">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>"
+  },
+
+  "VERIFY_BOUND_VARIABLES_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_BOUND_VARIABLES_PLACEHOLDER": {
+    "en": "Enter the variables separated by ; (semicolon)",
+    "pt": "Digite as variáveis separadas por ;"
+  },
+  "VERIFY_BOUND_VARIABLES_PROMPT": {
+    "en": "Enter the set of bound variables of the formula {formula}:",
+    "pt": "Digite o conjunto de variáve\nis ligadas da fórmula {formula}:"
+  },
+  "VERIFY_BOUND_VARIABLES_HINT": {
+    "en": "Each element of your set must be separated by ; (semicolon)",
+    "pt": "Cada elemento do seu conjunto deve ser separado por ; (ponto-e-vírgula)"
+  },
+  "VERIFY_BOUND_VARIABLES_RIGHT_ANSWER": {
+    "en": "<font color=\"blue\">Congratulations, you got the question right!</font>",
+    "pt": "<font color=\"blue\">Parabéns você acertou a questão.</font>"
+  },
+  "VERIFY_BOUND_VARIABLES_WRONG_ANSWER": {
+    "en": "<font color=\"red\">Unfortunately, you got the question wrong.</font>",
+    "pt": "<font color=\"red\">Você errou a questão.</font>"
+  },
+  "VERIFY_BOUND_VARIABLES_INVALID_FORMULA": {
+    "en": "<font color=\"red\">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>",
+    "pt": "<font color=\"red\">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>"
+  },
+
+  "VERIFY_SUBSTITUTION_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_SUBSTITUTION_PLACEHOLDER": {
+    "en": "Enter your formula:",
+    "pt": "Digite sua fórmula:"
+  },
+  "VERIFY_SUBSTITUTION_CHECKBOX_PARENTHESES": {
+    "en": "Display Formula with Parentheses",
+    "pt": "Exibir Fórmula com Parênteses"
+  },
+  "VERIFY_SUBSTITUTION_CHECKBOX_LATEX": {
+    "en": "Display Formula in LaTeX",
+    "pt": "Exibir Fórmula em Latex"
+  },
+  "VERIFY_SUBSTITUTION_PROMPT": {
+    "en": "Enter the formula that results from substitution the variable {var} with the term {term} in the formula {formula}:",
+    "pt": "Digite a fórmula que é resultado da substituição da variável {var} pelo termo {term} na fórmula {formula}:"
+  },
+  "VERIFY_SUBSTITUTION_RIGHT_ANSWER": {
+    "en": "<font color=\"blue\">Congratulations this is the correct substitution:</font>",
+    "pt": "<font color=\"blue\">Parabéns essa é a subtituição correta:</font>"
+  },
+  "VERIFY_SUBSTITUTION_WRONG_ANSWER": {
+    "en": "<font color=\"red\">The formula {result} is not the result of substitution {var} with {term} in the formula {formula}.</font>",
+    "pt": "<font color=\"red\">A fórmula {result} não é o resultado da substituição de {var} por {term} na fórmula {formula}.</font>"
+  },
+  "VERIFY_SUBSTITUTION_INVALID_FORMULA": {
+    "en": "<font color=\"red\">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>",
+    "pt": "<font color=\"red\">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>"
+  },
+
+  "VERIFY_VALID_CONCLUSION_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_VALID_CONCLUSION_OPTIONS_YES": {"en": "Yes", "pt": "Sim"},
+  "VERIFY_VALID_CONCLUSION_OPTIONS_NO": {"en": "No", "pt": "Não"},
+  "VERIFY_VALID_CONCLUSION_ANSWER_LABEL": {"en": "Answer:", "pt": "Resposta:"},
+  "VERIFY_VALID_CONCLUSION_INTRO": {
+    "en": "Consider the following statements:",
+    "pt": "Considere as seguintes afirmações:"
+  },
+  "VERIFY_VALID_CONCLUSION_QUESTION": {
+    "en": "Can we conclude that the statement below follows logically from the statements above?",
+    "pt": "Podemos concluir que a afirmação abaixo segue logicamente das afirmações acima?"
+  },
+  "VERIFY_VALID_CONCLUSION_CHOOSE_OPTION": {
+    "en": "<font color=\"red\">Choose one of the alternatives! Try again!</font>",
+    "pt": "<font color=\"red\">Escolha uma das alternativas! Tente novamente!</font>"
+  },
+  "VERIFY_VALID_CONCLUSION_RIGHT_ANSWER": {
+    "en": "<font color=\"blue\">Congratulations, you got the question right.</font>",
+    "pt": "<font color=\"blue\">Parabéns, você acertou a questão.</font>"
+  },
+  "VERIFY_VALID_CONCLUSION_WRONG_ANSWER": {
+    "en": "<font color=\"red\">Unfortunately, you got the question wrong. Try again!</font>",
+    "pt": "<font color=\"red\">Infelizmente, você errou a questão. Tente novamente!</font>"
+  },
+
+  "VERIFY_FORMULA_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_FORMULA_PLACEHOLDER": {"en": "Enter your formula:", "pt": "Digite sua fórmula:"},
+  "VERIFY_FORMULA_CHECKBOX_PARENTHESES": {
+    "en": "Display Formula with Parentheses",
+    "pt": "Exibir Fórmula com Parênteses"
+  },
+  "VERIFY_FORMULA_CHECKBOX_LATEX": {
+    "en": "Display Formula in LaTeX",
+    "pt": "Exibir Fórmula em Latex"
+  },
+  "VERIFY_FORMULA_PROMPT": {"en": "Enter your formula:", "pt": "Digite sua fórmula:"},
+  "VERIFY_FORMULA_RIGHT_ANSWER": {
+    "en": "<font color=\"blue\">Congratulations this is a formula of logic:</font>",
+    "pt": "<font color=\"blue\">Parabéns essa é uma fórmula da lógica:</font>"
+  }
+}
