@@ -1,15 +1,34 @@
 {
-  "BTN_VERIFY": {"en": "Check", "pt": "Verificar"},
-  "ANITA_INPUT_PROOF_PLACEHOLDER": {"en": "Enter your proof", "pt": "Digite sua demonstração"},
-  "CHECKBOX_SHOW_LATEX": {"en": "Display LaTeX", "pt": "Exibir Latex"},
-
-  "ANITA_CONSIDER_ASSUMPTIONS_TITLE": {"pt": "<b>Considere as seguintes afirmações:</b>"},
-  "ANITA_CONSIDER_CONCLUSION_TEXT": {"pt": "<b>Considere a afirmação abaixo segue logicamente das afirmações acima:"},
-  "ANITA_REPRESENT_AND_PROVE_TEXT": {"pt": "### Represente as afirmações acima em lógica e digite sua demonstração em Tableau Analítico:"},
-  "ANITA_REPRESENT_FORMULAS_HEADER": {"pt": "# Representamos as afirmações através das seguintes fórmulas:"},
-  "ANITA_REPRESENT_FOR": {"pt": "para"},
-  "ANITA_SHOW_VALID_REASONING": {"pt": "# Assim, devemos demonstrar que o raciocínio abaixo é válido:"},
-
+  "BTN_VERIFY": {
+    "en": "Check",
+    "pt": "Verificar"
+  },
+  "ANITA_INPUT_PROOF_PLACEHOLDER": {
+    "en": "Enter your proof",
+    "pt": "Digite sua demonstração"
+  },
+  "CHECKBOX_SHOW_LATEX": {
+    "en": "Display LaTeX",
+    "pt": "Exibir Latex"
+  },
+  "ANITA_CONSIDER_ASSUMPTIONS_TITLE": {
+    "pt": "<b>Considere as seguintes afirmações:</b>"
+  },
+  "ANITA_CONSIDER_CONCLUSION_TEXT": {
+    "pt": "<b>Considere a afirmação abaixo segue logicamente das afirmações acima:"
+  },
+  "ANITA_REPRESENT_AND_PROVE_TEXT": {
+    "pt": "### Represente as afirmações acima em lógica e digite sua demonstração em Tableau Analítico:"
+  },
+  "ANITA_REPRESENT_FORMULAS_HEADER": {
+    "pt": "# Representamos as afirmações através das seguintes fórmulas:"
+  },
+  "ANITA_REPRESENT_FOR": {
+    "pt": "para"
+  },
+  "ANITA_SHOW_VALID_REASONING": {
+    "pt": "# Assim, devemos demonstrar que o raciocínio abaixo é válido:"
+  },
   "ANITA_TYPE_PROOF_TITLE": {
     "en": "<h3>Enter your proof in Analytic Tableau:</h3>",
     "pt": "### Digite sua demonstração em Tableau Analítico:"
@@ -34,20 +53,34 @@
     "en": "The branches below are not saturated:",
     "pt": "Os ramos abaixo não estão saturados:"
   },
-  "ANITA_BRANCH_LABEL": {"en": "Branch:", "pt": "Ramo:"},
-  "ANITA_LATEX_CODE_LABEL": {"en": "LaTeX Code:", "pt": "Código Latex:"},
+  "ANITA_BRANCH_LABEL": {
+    "en": "Branch:",
+    "pt": "Ramo:"
+  },
+  "ANITA_LATEX_CODE_LABEL": {
+    "en": "LaTeX Code:",
+    "pt": "Código Latex:"
+  },
   "ANITA_PROOF_ERRORS_TITLE": {
     "en": "<font color=\"red\">The proof is not correct:</font>",
     "pt": "<font color=\"red\">Sua demonstração contém os seguintes erros:</font>"
   },
-
-  "ANITA_THEOREM_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
-  "ANITA_THEOREM_INPUT_PLACEHOLDER": {"en": "Enter your proof:", "pt": "Digite sua demonstração:"},
+  "ANITA_THEOREM_BUTTON_VERIFY": {
+    "en": "Check",
+    "pt": "Verificar"
+  },
+  "ANITA_THEOREM_INPUT_PLACEHOLDER": {
+    "en": "Enter your proof:",
+    "pt": "Digite sua demonstração:"
+  },
   "ANITA_THEOREM_INVALID": {
     "en": "<font color=\"red\">Theorem {theorem} is not valid.</font>",
     "pt": "<font color=\"red\">{theorem} não é um teorema válido!</font>"
   },
-  "ANITA_THEOREM_CHECKBOX_LATEX": {"en": "Display LaTeX", "pt": "Exibir Latex"},
+  "ANITA_THEOREM_CHECKBOX_LATEX": {
+    "en": "Display LaTeX",
+    "pt": "Exibir Latex"
+  },
   "ANITA_THEOREM_TITLE": {
     "en": "<h3>Enter the proof of {theorem} in Analytic Tableau:</h3>",
     "pt": "Digite a demonstração de {theorem} em Tableau Analítico:"
@@ -72,8 +105,14 @@
     "en": "The branches below are not saturated:",
     "pt": "Os ramos abaixo não estão saturados:"
   },
-  "ANITA_THEOREM_BRANCH_LABEL": {"en": "Branch:", "pt": "Ramo:"},
-  "ANITA_THEOREM_LATEX_CODE_LABEL": {"en": "LaTeX Code:", "pt": "Código Latex:"},
+  "ANITA_THEOREM_BRANCH_LABEL": {
+    "en": "Branch:",
+    "pt": "Ramo:"
+  },
+  "ANITA_THEOREM_LATEX_CODE_LABEL": {
+    "en": "LaTeX Code:",
+    "pt": "Código Latex:"
+  },
   "ANITA_THEOREM_ERRORS_TITLE": {
     "en": "<font color=\"red\">The proof is not correct:</font>",
     "pt": "<font color=\"red\">Sua demonstração contém os seguintes erros:</font>"
@@ -82,11 +121,22 @@
     "en": "<font color=\"red\">Proof of {theorem} is valid, but it is not {input_theorem}!</font>",
     "pt": "<font color=\"red\">Sua demostração de {theorem} é válida, mas é diferente da demonstração solicitada {input_theorem}!</font>"
   },
-
-  "SUBSTITUTABLE_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
-  "SUBSTITUTABLE_OPTIONS_YES": {"en": "Yes", "pt": "Sim"},
-  "SUBSTITUTABLE_OPTIONS_NO": {"en": "No", "pt": "Não"},
-  "SUBSTITUTABLE_ANSWER_LABEL": {"en": "Answer:", "pt": "Resposta:"},
+  "SUBSTITUTABLE_BUTTON_VERIFY": {
+    "en": "Check",
+    "pt": "Verificar"
+  },
+  "SUBSTITUTABLE_OPTIONS_YES": {
+    "en": "Yes",
+    "pt": "Sim"
+  },
+  "SUBSTITUTABLE_OPTIONS_NO": {
+    "en": "No",
+    "pt": "Não"
+  },
+  "SUBSTITUTABLE_ANSWER_LABEL": {
+    "en": "Answer:",
+    "pt": "Resposta:"
+  },
   "SUBSTITUTABLE_QUESTION": {
     "en": "The variable {var} is substitutable by the term {term} in the formula {formula}:",
     "pt": "A variável {var} é substituível pelo termo {term} na fórmula {formula}:"
@@ -111,8 +161,10 @@
     "en": "<font color=\"red\">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>",
     "pt": "<font color=\"red\">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>"
   },
-
-  "VERIFY_VARIABLES_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_VARIABLES_BUTTON_VERIFY": {
+    "en": "Check",
+    "pt": "Verificar"
+  },
   "VERIFY_VARIABLES_PLACEHOLDER": {
     "en": "Enter the variables separated by ; (semicolon)",
     "pt": "Digite as variáveis separadas por ;"
@@ -137,8 +189,10 @@
     "en": "<font color=\"red\">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>",
     "pt": "<font color=\"red\">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>"
   },
-
-  "VERIFY_FREE_VARIABLES_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_FREE_VARIABLES_BUTTON_VERIFY": {
+    "en": "Check",
+    "pt": "Verificar"
+  },
   "VERIFY_FREE_VARIABLES_PLACEHOLDER": {
     "en": "Enter the variables separated by ; (semicolon)",
     "pt": "Digite as variáveis separadas por ;"
@@ -163,8 +217,10 @@
     "en": "<font color=\"red\">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>",
     "pt": "<font color=\"red\">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>"
   },
-
-  "VERIFY_BOUND_VARIABLES_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_BOUND_VARIABLES_BUTTON_VERIFY": {
+    "en": "Check",
+    "pt": "Verificar"
+  },
   "VERIFY_BOUND_VARIABLES_PLACEHOLDER": {
     "en": "Enter the variables separated by ; (semicolon)",
     "pt": "Digite as variáveis separadas por ;"
@@ -189,8 +245,10 @@
     "en": "<font color=\"red\">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>",
     "pt": "<font color=\"red\">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>"
   },
-
-  "VERIFY_SUBSTITUTION_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
+  "VERIFY_SUBSTITUTION_BUTTON_VERIFY": {
+    "en": "Check",
+    "pt": "Verificar"
+  },
   "VERIFY_SUBSTITUTION_PLACEHOLDER": {
     "en": "Enter your formula:",
     "pt": "Digite sua fórmula:"
@@ -219,11 +277,22 @@
     "en": "<font color=\"red\">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>",
     "pt": "<font color=\"red\">A definição da fórmula não está correta, verifique se todas regras foram aplicadas corretamente. Lembre-se que uma fórmula é definida pela seguinte BNF: F :== P | ~ P | P & Q | P | Q | P -> Q | P <-> Q | (P), onde P,Q (em caixa alta) são átomos.</font>"
   },
-
-  "VERIFY_VALID_CONCLUSION_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
-  "VERIFY_VALID_CONCLUSION_OPTIONS_YES": {"en": "Yes", "pt": "Sim"},
-  "VERIFY_VALID_CONCLUSION_OPTIONS_NO": {"en": "No", "pt": "Não"},
-  "VERIFY_VALID_CONCLUSION_ANSWER_LABEL": {"en": "Answer:", "pt": "Resposta:"},
+  "VERIFY_VALID_CONCLUSION_BUTTON_VERIFY": {
+    "en": "Check",
+    "pt": "Verificar"
+  },
+  "VERIFY_VALID_CONCLUSION_OPTIONS_YES": {
+    "en": "Yes",
+    "pt": "Sim"
+  },
+  "VERIFY_VALID_CONCLUSION_OPTIONS_NO": {
+    "en": "No",
+    "pt": "Não"
+  },
+  "VERIFY_VALID_CONCLUSION_ANSWER_LABEL": {
+    "en": "Answer:",
+    "pt": "Resposta:"
+  },
   "VERIFY_VALID_CONCLUSION_INTRO": {
     "en": "Consider the following statements:",
     "pt": "Considere as seguintes afirmações:"
@@ -244,9 +313,14 @@
     "en": "<font color=\"red\">Unfortunately, you got the question wrong. Try again!</font>",
     "pt": "<font color=\"red\">Infelizmente, você errou a questão. Tente novamente!</font>"
   },
-
-  "VERIFY_FORMULA_BUTTON_VERIFY": {"en": "Check", "pt": "Verificar"},
-  "VERIFY_FORMULA_PLACEHOLDER": {"en": "Enter your formula:", "pt": "Digite sua fórmula:"},
+  "VERIFY_FORMULA_BUTTON_VERIFY": {
+    "en": "Check",
+    "pt": "Verificar"
+  },
+  "VERIFY_FORMULA_PLACEHOLDER": {
+    "en": "Enter your formula:",
+    "pt": "Digite sua fórmula:"
+  },
   "VERIFY_FORMULA_CHECKBOX_PARENTHESES": {
     "en": "Display Formula with Parentheses",
     "pt": "Exibir Fórmula com Parênteses"
@@ -255,12 +329,14 @@
     "en": "Display Formula in LaTeX",
     "pt": "Exibir Fórmula em Latex"
   },
-  "VERIFY_FORMULA_PROMPT": {"en": "Enter your formula:", "pt": "Digite sua fórmula:"},
+  "VERIFY_FORMULA_PROMPT": {
+    "en": "Enter your formula:",
+    "pt": "Digite sua fórmula:"
+  },
   "VERIFY_FORMULA_RIGHT_ANSWER": {
     "en": "<font color=\"blue\">Congratulations this is a formula of logic:</font>",
     "pt": "<font color=\"blue\">Parabéns essa é uma fórmula da lógica:</font>"
   },
-
   "ERROR_INVALID_INITIAL_TABLEAU": {
     "en": "^, The initial tableau should start with the premises followed by the conclusion. After the initial tableau, it is not allowed to add premises or conclusion.",
     "pt": "^, O tableau inicial deve começar com as premissas seguidas pela conclusão. Após o tableau inicial, não é permitido adicionar premissas ou conclusão."
@@ -545,7 +621,6 @@
     "en": "The formula definition is not correct, check that all rules were applied correctly.\n Remember that a formula is defined by the following BNF:\nF :== P | ~ P | Q&A | P | Q | P -> Q | P <-> Q | (P), where P,Q are atoms",
     "pt": "A definição da fórmula não está correta, verifique se todas as regras foram aplicadas corretamente.\n Lembre-se que uma fórmula é definida pela seguinte BNF:\nF :== P | ~ P | Q&A | P | Q | P -> Q | P <-> Q | (P), onde P,Q são átomos"
   },
-
   "FILE_OUTPUT_PROOF_VALID": {
     "en": "The proof below is valid.\n",
     "pt": "A demonstração abaixo está correta.\n"
