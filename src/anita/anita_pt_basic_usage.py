@@ -21,3 +21,10 @@ print(check_proof('''1. T A|B		pre
 	}
    }
 '''))
+
+print(check_proof('''1. F A|~A conclusao
+2. F A |F 1
+3. F ~A 1
+4. T A 3
+5. @ 2,4
+'''))
