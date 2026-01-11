@@ -14,7 +14,7 @@ def t(key: str, lang: str | None = None) -> str:
     """
     Retorna a string traduzida para a chave e idioma informados.
     key: identificador da mensagem (ex.: 'BTN_VERIFY')
-    lang: código do idioma (ex.: 'pt', 'en'). Se None, usa idioma padrão do sistema.
+    lang: código do idioma (ex.: 'pt', 'en'). Se None, usa a variável de ambiente ANITA_LANG ou 'pt' como padrão.
     """
     if lang is None:
         lang = os.getenv('ANITA_LANG', 'pt')
