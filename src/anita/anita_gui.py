@@ -1,8 +1,8 @@
-from anita.i18n import t
+from anita.utils.i18n import t
 import ipywidgets as widgets
 from IPython.display import display, Markdown, HTML
 import traceback
-from anita.anita_pt_fo import ParserAnita, ParserTheorem, ParserFormula
+from anita.anita_fo import ParserAnita, ParserTheorem, ParserFormula
 
 
 def anita(input_proof='', input_text_assumptions=[], input_text_conclusion='', height_layout='300px'):

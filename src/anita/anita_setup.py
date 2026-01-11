@@ -1,14 +1,14 @@
-import anita.anita_pt_fo
+import anita.anita_fo
 import argparse
 import traceback
-from anita.i18n import t
+from anita.utils.i18n import t
 
 parser = argparse.ArgumentParser(description='Analytic Tableau Proof Assistant (ANITA).')
 parser.add_argument("-i", type=str,help="Arquivo de entrada com a prova em ANITA.")
 parser.add_argument("-o", type=str,help="Arquivo de saída do resultado da verificação da prova na ANITA")
 args = parser.parse_args()
-fileName = 'example_anita_pt.txt'
-fileSave = 'result_anita_pt.txt'
+fileName = 'example_anita.txt'
+fileSave = 'result_anita.txt'
 if args.i is not None: 
     fileName = args.i
 if args.o is not None: 
@@ -17,7 +17,7 @@ if args.o is not None:
 try:
     f = open(fileName, 'r')
     input_proof = f.read()
-    result = anita.anita_pt_fo.ParserAnita.getProof(input_proof)
+    result = anita.anita_fo.ParserAnita.getProof(input_proof)
     with open(fileSave, "w", encoding='utf8') as fs:
         if(result.errors==[]):
             if(result.is_closed):

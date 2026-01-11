@@ -1,6 +1,5 @@
 import argparse
-from anita.anita_pt_fo import check_proof as check_pt
-from anita.anita_en_fo import check_proof as check_en
+from anita.anita_fo import check_proof as check
 import os
 
 def main():
@@ -29,10 +28,8 @@ def main():
     f = open(fileName, 'r')
 
     input_proof = f.read()
-    if input_lang=="pt":
-        print(check_pt(input_proof,input_theorem=input_theorem,display_latex=input_display_latex, display_theorem=input_display_theorem, display_countermodel=input_display_countermodel))
-    elif input_lang=="en":
-        print(check_en(input_proof,input_theorem=input_theorem,display_latex=input_display_latex, display_theorem=input_display_theorem, display_countermodel=input_display_countermodel))
+    if input_lang=="pt" or input_lang=="en":
+        print(check(input_proof,input_theorem=input_theorem,display_latex=input_display_latex, display_theorem=input_display_theorem, display_countermodel=input_display_countermodel))
     else:
         print("Você deve escolher pt para Português (default) ou en para Inglês.")
     

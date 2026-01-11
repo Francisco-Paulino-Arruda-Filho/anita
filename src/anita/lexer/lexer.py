@@ -1,5 +1,5 @@
 from rply import LexerGenerator
-from anita.i18n import t
+from anita.utils.i18n import t
 
 
 class Lexer():
