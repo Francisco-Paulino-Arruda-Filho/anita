@@ -1,22 +1,35 @@
+import json
+import os
+
+STRINGS_PATH = os.path.join(os.path.dirname(__file__), 'anita_en_gui_strings.json')
+with open(STRINGS_PATH, encoding='utf-8') as f:
+    EN_STRINGS = json.load(f)
+
+
+def t(key):
+    return EN_STRINGS.get(key, key)
+
+
 import ipywidgets as widgets
 from IPython.display import display, Markdown, HTML
 import traceback
 from anita.anita_en_fo import ParserAnita, ParserTheorem, ParserFormula
 
+
 def anita(input_string='', height_layout='300px'):
   layout = widgets.Layout(width='90%', height=height_layout)
-  run = widgets.Button(description="Check")
+  run = widgets.Button(description=t('BTN_VERIFY'))
   input = widgets.Textarea(
       value=input_string,
-      placeholder='Enter you proof',
+      placeholder=t('ANITA_INPUT_PROOF_PLACEHOLDER'),
       description='',
       layout=layout
       )
-  cLatex = widgets.Checkbox(value=False, description='Display Latex')
+  cLatex = widgets.Checkbox(value=False, description=t('CHECKBOX_SHOW_LATEX'))
   output = widgets.Output()
   wButtons = widgets.HBox([run, cLatex])
   
-  display(widgets.HTML('<h3>Enter your proof in Analytic Tableau:</h3>'), 
+  display(widgets.HTML(t('ANITA_TYPE_PROOF_TITLE')), 
           input, wButtons, output)
 
   def on_button_run_clicked(_):
@@ -27,31 +40,31 @@ def anita(input_string='', height_layout='300px'):
           if(result.errors==[]):
             msg = []
             if(result.is_closed):
-              display(HTML(rf'<font color="blue">Congratulations! The proof of {result.theorem} is valid.</font>'))
+              display(HTML(t('ANITA_PROOF_CORRECT').format(theorem=result.theorem)))
             else:
               if result.saturared_branches!=[]:
-                display(HTML(rf'<font color="blue">Theorem {result.theorem} is not valid.</font>'))              
-                msg.append("Countermodels:")
+                display(HTML(t('ANITA_THEOREM_NOT_VALID').format(theorem=result.theorem)))              
+                msg.append(t('ANITA_COUNTEREXAMPLES_LABEL'))
                 for s_v in result.counter_examples:
                   msg.append(s_v)                  
               else:
-                display(HTML(rf'<font color="red">The proof of {result.theorem} is not complete.</font>'))              
-                msg.append("The branches below are not saturated:")
+                display(HTML(t('ANITA_PROOF_INCOMPLETE').format(theorem=result.theorem)))              
+                msg.append(t('ANITA_UNSATURATED_BRANCHES_LABEL'))
                 for rules in result.open_branches:
-                  msg.append("Branch:")
+                  msg.append(t('ANITA_BRANCH_LABEL'))
                   msg.append('<br>'.join([r.toString() for r in reversed(rules)]))
             if(cLatex.value):
-              msg.append("LaTeX Code:")
-              msg.append("%"+result.latex_theorem)
+              msg.append(t('ANITA_LATEX_CODE_LABEL'))
+              msg.append('%'+result.latex_theorem)
               msg.append(result.colored_latex)
             display(widgets.HTML('<br>'.join(msg)))       
           else:
-            display(HTML(rf'<font color="red">The proof is not correct:</font>'))
+            display(HTML(t('ANITA_PROOF_ERRORS_TITLE')))
             for error in result.errors:
                 print(error)
       except ValueError:
           s = traceback.format_exc()
-          result = (s.split("@@"))[-1]
+          result = (s.split('@@'))[-1]
           print (f'{result}')
       else:
           pass
@@ -60,22 +73,22 @@ def anita(input_string='', height_layout='300px'):
 
 def anita_theorem(input_theorem, input_proof='', height_layout='300px',default_gentzen=False, default_fitch=False):
   layout = widgets.Layout(width='90%', height=height_layout)
-  run = widgets.Button(description="Check")
+  run = widgets.Button(description=t('ANITA_THEOREM_BUTTON_VERIFY'))
   input = widgets.Textarea(
       value=input_proof,
-      placeholder='Enter you proof:',
+      placeholder=t('ANITA_THEOREM_INPUT_PLACEHOLDER'),
       description='',
       layout=layout
       )
   premisses, conclusion = ParserTheorem.getTheorem(input_theorem)
-  if conclusion == None:
-    display(HTML(rf'<font color="red">Theorem {input_theorem} is not valid.</font>'))              
+  if conclusion is None:
+    display(HTML(t('ANITA_THEOREM_INVALID').format(theorem=input_theorem)))             
     return
-  cLatex = widgets.Checkbox(value=False, description='Display Latex')
+  cLatex = widgets.Checkbox(value=False, description=t('ANITA_THEOREM_CHECKBOX_LATEX'))
   output = widgets.Output()
   wButtons = widgets.HBox([run, cLatex])
   
-  display(widgets.HTML(f'<h3Enter the proof of {input_theorem} in Analytic Tableau:</h3>'), 
+  display(widgets.HTML(t('ANITA_THEOREM_TITLE').format(theorem=input_theorem)), 
           input, wButtons, output)
   
   def on_button_run_clicked(_):
@@ -89,33 +102,33 @@ def anita_theorem(input_theorem, input_proof='', height_layout='300px',default_g
               if(conclusion==result.conclusion and set_premisses==set_premisses_result):
                 msg = []
                 if(result.is_closed):
-                  display(HTML(rf'<font color="blue">Congratulations! The proof of {result.theorem} is valid.</font>'))
+                  display(HTML(t('ANITA_THEOREM_CORRECT').format(theorem=result.theorem)))
                 else:
                   if result.saturared_branches!=[]:
-                    display(HTML(rf'<font color="blue">Theorem {result.theorem} is not valid.</font>'))              
-                    msg.append("Countermodels:")
+                    display(HTML(t('ANITA_THEOREM_NOT_VALID_2').format(theorem=result.theorem)))              
+                    msg.append(t('ANITA_THEOREM_COUNTEREXAMPLES_LABEL'))
                     for s_v in result.counter_examples:
                       msg.append(s_v)                  
                   else:
-                    display(HTML(rf'<font color="red">The proof of {result.theorem} is not complete.</font>'))              
-                    msg.append("The branches below are not saturated:")
+                    display(HTML(t('ANITA_THEOREM_INCOMPLETE').format(theorem=result.theorem)))              
+                    msg.append(t('ANITA_THEOREM_UNSATURATED_BRANCHES_LABEL'))
                     for rules in result.open_branches:
-                      msg.append("Branch:")
+                      msg.append(t('ANITA_THEOREM_BRANCH_LABEL'))
                       msg.append('<br>'.join([r.toString() for r in reversed(rules)]))
                 if(cLatex.value):
-                  msg.append("Latex Code:")
-                  msg.append("%"+result.latex_theorem)
+                  msg.append(t('ANITA_THEOREM_LATEX_CODE_LABEL'))
+                  msg.append('%'+result.latex_theorem)
                   msg.append(result.colored_latex)
                 display(widgets.HTML('<br>'.join(msg)))       
               else:
-                display(HTML(rf'<font color="red">Proof of {result.theorem} is valid, but it is not {input_theorem}!</font>'))
+                display(HTML(t('ANITA_THEOREM_WRONG_PROOF').format(theorem=result.theorem, input_theorem=input_theorem)))
           else:
-            display(HTML(rf'<font color="red">The proof is not correct:</font>'))
+            display(HTML(t('ANITA_THEOREM_ERRORS_TITLE')))
             for error in result.errors:
                 print(error)
       except ValueError:
           s = traceback.format_exc()
-          result = (s.split("@@"))[-1]
+          result = (s.split('@@'))[-1]
           print (f'{result}')
       else:
           pass
@@ -123,17 +136,17 @@ def anita_theorem(input_theorem, input_proof='', height_layout='300px',default_g
 
 
 def is_substitutable(input_formula='', input_var ='x', input_term='a'):
-  run = widgets.Button(description="Check")
+  run = widgets.Button(description=t('SUBSTITUTABLE_BUTTON_VERIFY'))
   cResult = widgets.RadioButtons(
-    options=['Yes', 'No'],
+    options=[t('SUBSTITUTABLE_OPTIONS_YES'), t('SUBSTITUTABLE_OPTIONS_NO')],
     value=None, 
-    description='Answer:',
+    description=t('SUBSTITUTABLE_ANSWER_LABEL'),
     disabled=False
 )
   output = widgets.Output()
   wButtons = widgets.HBox([run])
   
-  display(HTML(rf'The variable {input_var} is substitutable by the term {input_term} in the formula {input_formula}:'))
+  display(HTML(t('SUBSTITUTABLE_QUESTION').format(var=input_var, term=input_term, formula=input_formula)))
   display(cResult, wButtons, output)
 
   def on_button_run_clicked(_):
@@ -142,38 +155,39 @@ def is_substitutable(input_formula='', input_var ='x', input_term='a'):
       try:
           f = ParserFormula.getFormula(input_formula)
           if(f!=None):
-            if (f.is_substitutable(input_var,input_term) and cResult.value=='Yes'):
-              display(HTML(r'<font color="blue">Congratulations you got the question right!</font>'))              
-              display(HTML(rf'The variable {input_var} is substitutable by the term {input_term} in the formula {input_formula}.'))              
-            elif not f.is_substitutable(input_var,input_term) and cResult.value=='No':
-              display(HTML(r'<font color="blue">Congratulations you got the question right!</font>'))              
-              display(HTML(rf'The variable {input_var} is not substitutable by the term {input_term} in the formula {input_formula}.')) 
+            if (f.is_substitutable(input_var,input_term) and cResult.value==t('SUBSTITUTABLE_OPTIONS_YES')):
+              display(HTML(t('SUBSTITUTABLE_RIGHT_ANSWER')))              
+              display(HTML(t('SUBSTITUTABLE_RIGHT_ANSWER_IS').format(var=input_var, term=input_term, formula=input_formula)))              
+            elif not f.is_substitutable(input_var,input_term) and cResult.value==t('SUBSTITUTABLE_OPTIONS_NO')):
+              display(HTML(t('SUBSTITUTABLE_RIGHT_ANSWER')))              
+              display(HTML(t('SUBSTITUTABLE_RIGHT_ANSWER_IS_NOT').format(var=input_var, term=input_term, formula=input_formula))) 
             else:
-              display(HTML(rf'<font color="red">Unfortunately, you got the question wrong.</font>'))
+              display(HTML(t('SUBSTITUTABLE_WRONG_ANSWER')))
           else:
-            display(HTML(r'<font color="red">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>'))
+            display(HTML(t('SUBSTITUTABLE_INVALID_FORMULA')))
       except ValueError:
           s = traceback.format_exc()
-          result = (s.split("@@"))[-1]
+          result = (s.split('@@'))[-1]
           print (f'{result}')
       else:
           pass
   run.on_click(on_button_run_clicked)
 
+
 def verify_variables(input_string='', input_formula = ''):
   layout = widgets.Layout(width='90%')
-  run = widgets.Button(description="Check")
+  run = widgets.Button(description=t('VERIFY_VARIABLES_BUTTON_VERIFY'))
   input = widgets.Text(
       value=input_string,
-      placeholder='Enter the variables separated by ; (semicolon)',
+      placeholder=t('VERIFY_VARIABLES_PLACEHOLDER'),
       description='',
       layout=layout
       )
   output = widgets.Output()
   wButtons = widgets.HBox([run])
   
-  display(HTML(rf'Enter the set of variables of the formula {input_formula}:'))
-  display(HTML(r'Each element of your set must be separated by ; (semicolon)'))
+  display(HTML(t('VERIFY_VARIABLES_PROMPT').format(formula=input_formula)))
+  display(HTML(t('VERIFY_VARIABLES_HINT')))
   display(input, wButtons, output)
 
   def on_button_run_clicked(_):
@@ -181,17 +195,17 @@ def verify_variables(input_string='', input_formula = ''):
     with output:
       try:
           result = ParserFormula.getFormula(input_formula)
-          variables = set([x.strip() for x in input.value.strip().split(";")])
+          variables = set([x.strip() for x in input.value.strip().split(';')])
           if(result!=None):
             if variables==result.all_variables():
-              display(HTML(r'<font color="blue">Congratulations, you got the question right!</font>'))              
+              display(HTML(t('VERIFY_VARIABLES_RIGHT_ANSWER')))              
             else:
-              display(HTML(rf'<font color="red">Unfortunately, you got the question wrong.</font>'))
+              display(HTML(t('VERIFY_VARIABLES_WRONG_ANSWER')))
           else:
-            display(HTML(r'<font color="red">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>'))
+            display(HTML(t('VERIFY_VARIABLES_INVALID_FORMULA')))
       except ValueError:
           s = traceback.format_exc()
-          result = (s.split("@@"))[-1]
+          result = (s.split('@@'))[-1]
           print (f'{result}')
       else:
           pass
@@ -200,18 +214,18 @@ def verify_variables(input_string='', input_formula = ''):
 
 def verify_free_variables(input_string='', input_formula = ''):
   layout = widgets.Layout(width='90%')
-  run = widgets.Button(description="Check")
+  run = widgets.Button(description=t('VERIFY_FREE_VARIABLES_BUTTON_VERIFY'))
   input = widgets.Text(
       value=input_string,
-      placeholder='Enter the variables separated by ; (semicolon)',
+      placeholder=t('VERIFY_FREE_VARIABLES_PLACEHOLDER'),
       description='',
       layout=layout
       )
   output = widgets.Output()
   wButtons = widgets.HBox([run])
   
-  display(HTML(rf'Enter the set of the free variables of the formula {input_formula}:'))
-  display(HTML(r'Each element of your set must be separated by ; (semicolon)'))
+  display(HTML(t('VERIFY_FREE_VARIABLES_PROMPT').format(formula=input_formula)))
+  display(HTML(t('VERIFY_FREE_VARIABLES_HINT')))
   display(input, wButtons, output)
 
   def on_button_run_clicked(_):
@@ -219,36 +233,37 @@ def verify_free_variables(input_string='', input_formula = ''):
     with output:
       try:
           result = ParserFormula.getFormula(input_formula)
-          variables = set([x.strip() for x in input.value.strip().split(";")])
+          variables = set([x.strip() for x in input.value.strip().split(';')])
           if(result!=None):
             if variables==result.free_variables():
-              display(HTML(r'<font color="blue">Congratulations, you got the question right!</font>'))              
+              display(HTML(t('VERIFY_FREE_VARIABLES_RIGHT_ANSWER')))              
             else:
-              display(HTML(rf'<font color="red">Unfortunately, you got the question wrong.</font>'))
+              display(HTML(t('VERIFY_FREE_VARIABLES_WRONG_ANSWER')))
           else:
-            display(HTML(r'<font color="red">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>'))
+            display(HTML(t('VERIFY_FREE_VARIABLES_INVALID_FORMULA')))
       except ValueError:
           s = traceback.format_exc()
-          result = (s.split("@@"))[-1]
+          result = (s.split('@@'))[-1]
           print (f'{result}')
       else:
           pass
   run.on_click(on_button_run_clicked)
+
 
 def verify_bound_variables(input_string='', input_formula = ''):
   layout = widgets.Layout(width='90%')
-  run = widgets.Button(description="Check")
+  run = widgets.Button(description=t('VERIFY_BOUND_VARIABLES_BUTTON_VERIFY'))
   input = widgets.Text(
       value=input_string,
-      placeholder='Enter the variables separated by ; (semicolon)',
+      placeholder=t('VERIFY_BOUND_VARIABLES_PLACEHOLDER'),
       description='',
       layout=layout
       )
   output = widgets.Output()
   wButtons = widgets.HBox([run])
   
-  display(HTML(rf'Enter the set of bound variables of the formula {input_formula}:'))
-  display(HTML(r'Each element of your set must be separated by ; (semicolon)'))
+  display(HTML(t('VERIFY_BOUND_VARIABLES_PROMPT').format(formula=input_formula)))
+  display(HTML(t('VERIFY_BOUND_VARIABLES_HINT')))
   display(input, wButtons, output)
 
   def on_button_run_clicked(_):
@@ -256,37 +271,38 @@ def verify_bound_variables(input_string='', input_formula = ''):
     with output:
       try:
           result = ParserFormula.getFormula(input_formula)
-          variables = set([x.strip() for x in input.value.strip().split(";")])
+          variables = set([x.strip() for x in input.value.strip().split(';')])
           if(result!=None):
             if variables==result.bound_variables():
-              display(HTML(r'<font color="blue">Congratulations, you got the question right!</font>'))              
+              display(HTML(t('VERIFY_BOUND_VARIABLES_RIGHT_ANSWER')))              
             else:
-              display(HTML(rf'<font color="red">Unfortunately, you got the question wrong.</font>'))
+              display(HTML(t('VERIFY_BOUND_VARIABLES_WRONG_ANSWER')))
           else:
-            display(HTML(r'<font color="red">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>'))
+            display(HTML(t('VERIFY_BOUND_VARIABLES_INVALID_FORMULA')))
       except ValueError:
           s = traceback.format_exc()
-          result = (s.split("@@"))[-1]
+          result = (s.split('@@'))[-1]
           print (f'{result}')
       else:
           pass
   run.on_click(on_button_run_clicked)
 
+
 def verify_substitution(input_string='', input_formula = '', input_var ='x', input_term='a'):
   layout = widgets.Layout(width='90%')
-  run = widgets.Button(description="Check")
+  run = widgets.Button(description=t('VERIFY_SUBSTITUTION_BUTTON_VERIFY'))
   input = widgets.Text(
       value=input_string,
-      placeholder='Enter your formula:',
+      placeholder=t('VERIFY_SUBSTITUTION_PLACEHOLDER'),
       description='',
       layout=layout
       )
-  cParentheses = widgets.Checkbox(value=False, description='Display Formula with Parentheses')
-  cLatex = widgets.Checkbox(value=False, description='Display Formula in Latex')
+  cParentheses = widgets.Checkbox(value=False, description=t('VERIFY_SUBSTITUTION_CHECKBOX_PARENTHESES'))
+  cLatex = widgets.Checkbox(value=False, description=t('VERIFY_SUBSTITUTION_CHECKBOX_LATEX'))
   output = widgets.Output()
   wButtons = widgets.HBox([run, cParentheses, cLatex])
   
-  display(HTML(rf'Enter the formula that results from substitution the variable {input_var} with the term {input_term} in the formula {input_formula}:'))
+  display(HTML(t('VERIFY_SUBSTITUTION_PROMPT').format(var=input_var, term=input_term, formula=input_formula)))
   display(input, wButtons, output)
 
   def on_button_run_clicked(_):
@@ -297,41 +313,42 @@ def verify_substitution(input_string='', input_formula = '', input_var ='x', inp
           result = ParserFormula.getFormula(input.value)
           if(result!=None):
             if result==f.substitution(input_var,input_term):
-              display(HTML(r'<font color="blue">Congratulations this is the correct substitution:</font>'))              
+              display(HTML(t('VERIFY_SUBSTITUTION_RIGHT_ANSWER')))              
               if(cLatex.value):
                 s = result.toLatex(parentheses=cParentheses.value)
                 display(Markdown(rf'${s}$'))
               else:
                 display(HTML(rf'{result.toString(parentheses=cParentheses.value)}'))
             else:
-              display(HTML(rf'<font color="red">The formula {result.toString()} is not the result of substitution {input_var} with {input_term} in the formula {input_formula}.</font>'))
+              display(HTML(t('VERIFY_SUBSTITUTION_WRONG_ANSWER').format(result=result.toString(), var=input_var, term=input_term, formula=input_formula)))
           else:
-            display(HTML(r'<font color="red">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>'))
+            display(HTML(t('VERIFY_SUBSTITUTION_INVALID_FORMULA')))
       except ValueError:
           s = traceback.format_exc()
-          result = (s.split("@@"))[-1]
+          result = (s.split('@@'))[-1]
           print (f'{result}')
       else:
           pass
   run.on_click(on_button_run_clicked)
 
+
 def verify_valid_conclusion(input_assumptions, input_conclusion, result_value=False):
   layout = widgets.Layout(width='40%')
-  run = widgets.Button(description="Check")
+  run = widgets.Button(description=t('VERIFY_VALID_CONCLUSION_BUTTON_VERIFY'))
   output = widgets.Output()
   wButtons = widgets.HBox([run])
   cResult = widgets.RadioButtons(
-    options=['Yes', 'No'],
+    options=[t('VERIFY_VALID_CONCLUSION_OPTIONS_YES'), t('VERIFY_VALID_CONCLUSION_OPTIONS_NO')],
     value=None, 
-    description='Answer:',
+    description=t('VERIFY_VALID_CONCLUSION_ANSWER_LABEL'),
     disabled=False
 )
-  questao = 'Consider the following statements:'
+  questao = t('VERIFY_VALID_CONCLUSION_INTRO')
   i = 1
   for assumption in input_assumptions:
     questao += f'\n1. {assumption}'
     i+=1
-  questao+='\nCan we conclude that the statement below follows logically from the statements above?'
+  questao+='\n'+t('VERIFY_VALID_CONCLUSION_QUESTION')
   questao+=f'\n{i}. {input_conclusion}'
   display(HTML(questao))
   display(widgets.HBox([cResult,wButtons]), output)
@@ -339,29 +356,30 @@ def verify_valid_conclusion(input_assumptions, input_conclusion, result_value=Fa
   def on_button_run_clicked(_):
     output.clear_output()
     with output:
-      if (cResult.value==None):
-        display(HTML('<font color="red">Choose one of the alternatives! Try again!</font>'))
-      elif(result_value==(cResult.value=='Yes')):
-        display(HTML('<font color="blue">Congratulations, you got the question right.</font>'))
+      if (cResult.value is None):
+        display(HTML(t('VERIFY_VALID_CONCLUSION_CHOOSE_OPTION')))
+      elif(result_value==(cResult.value==t('VERIFY_VALID_CONCLUSION_OPTIONS_YES'))):
+        display(HTML(t('VERIFY_VALID_CONCLUSION_RIGHT_ANSWER')))
       else:
-        display(HTML('<font color="red">Unfortunately, you got the question wrong. Try again!</font>'))
+        display(HTML(t('VERIFY_VALID_CONCLUSION_WRONG_ANSWER')))
   run.on_click(on_button_run_clicked)
+
 
 def verify_formula(input_string=''):
   layout = widgets.Layout(width='90%')
-  run = widgets.Button(description="Check")
+  run = widgets.Button(description=t('VERIFY_FORMULA_BUTTON_VERIFY'))
   input = widgets.Text(
       value=input_string,
-      placeholder='Enter your formula:',
+      placeholder=t('VERIFY_FORMULA_PLACEHOLDER'),
       description='',
       layout=layout
       )
-  cParentheses = widgets.Checkbox(value=False, description='Display Formula with Parentheses')
-  cLatex = widgets.Checkbox(value=False, description='Display Formula in Latex')
+  cParentheses = widgets.Checkbox(value=False, description=t('VERIFY_FORMULA_CHECKBOX_PARENTHESES'))
+  cLatex = widgets.Checkbox(value=False, description=t('VERIFY_FORMULA_CHECKBOX_LATEX'))
   output = widgets.Output()
   wButtons = widgets.HBox([run, cParentheses, cLatex])
   
-  display(HTML(r'Enter your formula:'))
+  display(HTML(t('VERIFY_FORMULA_PROMPT')))
   display(input, wButtons, output)
 
   def on_button_run_clicked(_):
@@ -370,17 +388,17 @@ def verify_formula(input_string=''):
       try:
           result = ParserFormula.getFormula(input.value)
           if(result!=None):
-              display(HTML(r'<font color="blue">Congratulations this is a formula of logic:</font>'))
+              display(HTML(t('VERIFY_FORMULA_RIGHT_ANSWER')))
               if(cLatex.value):
                 s = result.toLatex(parentheses=cParentheses.value)
                 display(Markdown(rf'${s}$'))
               else:
                 display(HTML(rf'{result.toString(parentheses=cParentheses.value)}'))
           else:
-            display(HTML(r'<font color="red">Formula definition is not correct, check if all rules are applied correctly. Remember that a formula is defined by the following BNF: F :== P | ~ P | Q & Q | P | Q | P -> Q | P <-> Q | (P), where P,Q (in capital letters) are atoms.</font>'))
+            display(HTML(t('VERIFY_VARIABLES_INVALID_FORMULA')))
       except ValueError:
           s = traceback.format_exc()
-          result = (s.split("@@"))[-1]
+          result = (s.split('@@'))[-1]
           print (f'{result}')
       else:
           pass
