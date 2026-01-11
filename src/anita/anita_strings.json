@@ -544,5 +544,46 @@
   "ERROR_THEOREM_DEFINITION_NOT_CORRECT": {
     "en": "The formula definition is not correct, check that all rules were applied correctly.\n Remember that a formula is defined by the following BNF:\nF :== P | ~ P | Q&A | P | Q | P -> Q | P <-> Q | (P), where P,Q are atoms",
     "pt": "A definição da fórmula não está correta, verifique se todas as regras foram aplicadas corretamente.\n Lembre-se que uma fórmula é definida pela seguinte BNF:\nF :== P | ~ P | Q&A | P | Q | P -> Q | P <-> Q | (P), onde P,Q são átomos"
+  },
+
+  "FILE_OUTPUT_PROOF_VALID": {
+    "en": "The proof below is valid.\n",
+    "pt": "A demonstração abaixo está correta.\n"
+  },
+  "FILE_OUTPUT_THEOREM_PROOF_VALID": {
+    "en": "The proof of theorem ${}$ is valid.\n",
+    "pt": "A demonstração do teorema ${}$ está correta.\n"
+  },
+  "FILE_OUTPUT_THEOREM_NOT_VALID": {
+    "en": "The theorem is not valid.\n",
+    "pt": "O Teorema abaixo não é válido.\n"
+  },
+  "FILE_OUTPUT_COUNTERMODELS": {
+    "en": "Countermodels:",
+    "pt": "São contra-exemplos:"
+  },
+  "FILE_OUTPUT_LATEX_THEOREM_NOT_VALID": {
+    "en": "Theorem ${}$ is not valid.\n",
+    "pt": "O Teorema ${}$ não é válido.\n"
+  },
+  "FILE_OUTPUT_PROOF_NOT_COMPLETE": {
+    "en": "The proof below is not complete.\n",
+    "pt": "A demonstração do teorema abaixo não está completa.\n"
+  },
+  "FILE_OUTPUT_BRANCHES_NOT_SATURATED": {
+    "en": "The branches below are not saturated:",
+    "pt": "Os ramos abaixo não estão saturados:"
+  },
+  "FILE_OUTPUT_BRANCH": {
+    "en": "Branch:\n  ",
+    "pt": "Ramo:\n  "
+  },
+  "FILE_OUTPUT_LATEX_PROOF_NOT_COMPLETE": {
+    "en": "The proof of theorem ${}$ is not complete.\n",
+    "pt": "A demonstração do teorema ${}$ não está completa.\n"
+  },
+  "FILE_OUTPUT_ERRORS_FOUND": {
+    "en": "The following errors were found:\n\n",
+    "pt": "Os seguintes erros foram encontrados:\n\n"
   }
 }
